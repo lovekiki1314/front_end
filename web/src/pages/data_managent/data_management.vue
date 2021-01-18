@@ -1,0 +1,327 @@
+<template>
+  <div>
+    <Nav/>
+    <div class="divAll">
+      <div class="section-header3">
+        <h1 class="section-title">数据源管理</h1>
+        <span>Dataset</span>
+        <p class="section-subtitle">提供公链数据的下载导出、上传服务</p>
+      </div>
+      <el-form    ref="form" :model="downloadForm" label-width="150px">
+        <el-row type="flex" class="row-bg" justify="center">
+          <el-col :span="6"><div class="grid-content bg-purple">
+            <el-form-item label="公链名称：">
+              <el-select v-model="downloadForm.type" placeholder="请选择公链名称">
+                <el-option
+                  v-for="item in chainName"
+                  :key="item.label"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </div></el-col>
+
+          <el-col :span="6"><div class="grid-content bg-purple">
+            <el-form-item label="待下载数据类型:">
+              <el-select v-model="downloadForm.dataType" placeholder="请选择数据类型">
+                <el-option
+                  v-for="item in dataTypes"
+                  :key="item.label"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </div></el-col>
+
+          <el-col :span="6"><div class="grid-content bg-purple">
+            <el-form-item label="请选择开始时间:">
+              <el-date-picker
+                v-model="downloadForm.startTime"
+                align="right"
+                type="date"
+                placeholder="请选择日期"
+                :picker-options="pickerOptions">
+              </el-date-picker>
+            </el-form-item>
+          </div></el-col>
+
+          <el-col :span="6"><div class="grid-content bg-purple">
+            <el-form-item label="请选择结束时间：">
+              <el-date-picker
+                v-model="downloadForm.finishTime"
+                align="right"
+                type="date"
+                placeholder="请选择日期"
+                :picker-options="pickerOptions">
+              </el-date-picker>
+            </el-form-item>
+          </div>
+          </el-col>
+        </el-row>
+        <el-button type="primary" @click="download"  icon = "el-icon-download " class="loadButton">点击下载</el-button>
+      </el-form>
+
+      <br>
+      <br>
+      <hr>
+      <br><br><br>
+
+      <el-form ref="form" :model="uploadForm" label-width="150px">
+        <el-row  type="flex" class="row-bg" justify="center">
+          <el-col :span="6"><div class="grid-content bg-purple">
+            <el-form-item label="公链名称：">
+              <el-select v-model="uploadForm.type" placeholder="请选择公链名称">
+                <el-option
+                  v-for="item in chainName"
+                  :key="item.label"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </div></el-col>
+
+          <el-col :span="6"><div class="grid-content bg-purple"><el-form-item label="钱包地址:">
+            <el-input
+              size="medium"
+              type="textarea"
+              :autosize="{ minRows: 1}"
+              placeholder="请输入钱包地址"
+              v-model="uploadForm.address"
+              style="width: 100%">
+            </el-input>
+
+          </el-form-item></div></el-col>
+
+          <el-col :span="6"><div class="grid-content bg-purple"><el-form-item label="上传信息:">
+            <el-input
+              type="textarea"
+              :autosize="{ minRows:3}"
+              placeholder="请输入内容"
+              v-model="uploadForm.info">
+            </el-input>
+
+          </el-form-item></div></el-col>
+
+        </el-row>
+
+        <el-button  type="primary" icon="el-icon-upload2" class="loadButton" @click="upload">点击上传</el-button>
+
+      </el-form>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import Nav from '../../components/nav/Nav'
+import Footer from '../../components/nav/Footer'
+export default {
+  name: 'data_management',
+  components: {Nav, Footer},
+  data () {
+    return {
+      chainName: [{
+        value: 1 ,
+        label: '比特币'
+      }, {
+        value: 2,
+        label: '以太坊'
+      }, {
+        value: 3,
+        label: '柚子币'
+      }],
+
+      dataTypes: [{
+        value: '区块数据',
+        label: '区块数据'
+      }, {
+        value: '交易数据',
+        label: '交易数据'
+      }],
+
+      fileList: [],
+      downloadForm: {
+        user_id: '',
+        currency: '',
+        data_type: '',
+        start_date: '',
+        end_date: '',
+      },
+      uploadForm: {
+        type:'',
+        info:'',
+        address:'',
+        user_id:this.$store.state.id
+      },
+
+      pickerOptions: {
+        disabledDate (time) {
+          return time.getTime() > Date.now()
+        },
+        shortcuts: [{
+          text: '今天',
+          onClick (picker) {
+            picker.$emit('pick', new Date())
+          }
+        }, {
+          text: '昨天',
+          onClick (picker) {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24)
+            picker.$emit('pick', date)
+          }
+        }, {
+          text: '一周前',
+          onClick (picker) {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', date)
+          }
+        }]
+      },
+
+    }
+  },
+
+  methods: {
+    download(){
+      this.$axios.post('http://10.176.34.161:8000/api/userManagement/download',this.downloadForm)
+      .then(res=>{
+        const contentDisposition = res.headers['content-disposition'] 
+        const fileName = 'testdownload.txt'
+        // 以上两行代码获取服务端返回的文件名，当然也可以前端在此定义指定文件名 如：const fileName = test.xls
+        let blob = new Blob([res.data], {
+          type: 'text/csv',    // 将会被放入到 blob 中的数组内容的 MIME 类型,常用 ：application/vnd.ms-excel
+        })
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob) 
+        link.download = fileName
+        link.style.display = 'none'
+        document.body.appendChild(link)
+        link.click()
+        URL.revokeObjectURL(link.href)
+        document.body.removeChild(link)
+        
+      })
+
+    },
+    upload(){
+      const addressReg = /^[a-zA-Z0-9_-]{26,34}$/
+      if (this.uploadForm.address === '' || this.uploadForm.info === ''||this.uploadForm.type === '') {
+        alert('输入不能为空')
+      }
+      else if(!addressReg.test(this.uploadForm.address)){
+        alert('输入非法地址，请重新输入地址')
+      }else{
+        console.log(this.uploadForm)
+      this.$axios.post('http://10.176.34.161:8000/api/userManagement/upload', this.uploadForm,{"Content-Type": "application/json;charset=UTF-8"}).then(res => {
+        console.log('后端获取结果')
+        console.log(res.data)
+        if(res.data.result){
+          this.$alert('上传成功', '上传提示', {
+          confirmButtonText: '确定'
+        })}else {
+          this.$alert('上传失败', '上传提示', {
+            confirmButtonText: '确定'
+        })
+        }
+    })
+    }
+  }
+}
+}
+
+</script>
+
+<style scoped>
+.divAll{
+  min-height: 750px;
+ padding-top: 10%;
+  padding-bottom: 100px;
+}
+.loadButton{
+  position: relative;
+  left: 48%;
+}
+.inputText{
+  width: 50%;
+  margin-left: 24%;
+}
+.el-row {
+  margin-bottom: 20px;
+}
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #99a9bf;
+}
+/*.bg-purple {*/
+/*  background: #d3dce6;*/
+/*}*/
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+/*.row-bg {*/
+/*  padding: 10px 0;*/
+/*  background-color: #f9fafc;*/
+/*}*/
+
+.section {
+  padding: 80px 0;
+}
+
+.section-header3 {
+  color: #fff;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+}
+.section-header3.section-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #263238;
+  position: relative;
+}
+.section-subtitle{
+  font-size: 20px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  color: #2c3e50 ;
+}
+.section-header3 .section-title:before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  width: 80px;
+  height: 2px;
+  background: #50a6fc;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.section-header3 span {
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.07);
+  z-index: 2;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-transform: capitalize;
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 100%;
+}
+
+</style>
