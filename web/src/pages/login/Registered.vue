@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     <Navigation/>
+    <div style="padding: 0.1%; max-height: 90vh ">
     <el-form :model="registeredForm"
              :rules="fieldRules"
              ref="registeredForm"
@@ -16,19 +17,26 @@
                   v-model="registeredForm.userName"
                   auto-complete="off"
                   name="nm"
-                  placeholder="账号"></el-input>
+                  placeholder="账号 (不少于6位)"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password"
                   v-model="registeredForm.password"
                   auto-complete="off"
-                  placeholder="密码"></el-input>
+                  placeholder="密码（不少于6位）"></el-input>
       </el-form-item>
       <el-form-item prop="passwordRepeat">
         <el-input type="password"
                   v-model="registeredForm.passwordRepeat"
                   auto-complete="off"
                   placeholder="确认密码"></el-input>
+      </el-form-item>
+      <el-form-item prop="userMail">
+        <el-input type="text"
+                  v-model="registeredForm.userMail"
+                  auto-complete="off"
+                  name="nm"
+                  placeholder="邮箱"></el-input>
       </el-form-item>
       <!-- <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox> -->
       <el-form-item style="width:100%;">
@@ -37,11 +45,14 @@
                    @click.native.prevent="confirm">确认</el-button>
       </el-form-item>
     </el-form>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import Navigation from '../../components/nav/Nav'
+import Navigation from '../../components/nav/Nav1'
+import Footer from '../../components/nav/Footer'
 import router from '../../router'
 import store from '../../store'
 export default {
@@ -52,7 +63,8 @@ export default {
       registeredForm: {
         userName: '',
         password: '',
-        passwordRepeat: ''
+        passwordRepeat: '',
+        userMail: ''
       },
       fieldRules: {
         userName: [{ required: true, message: '请输入账号', trigger: 'blur' }],
@@ -66,6 +78,7 @@ export default {
     }
   },
   components: {
+    Footer,
     Navigation
   },
   methods: {
@@ -77,7 +90,7 @@ export default {
         console.log('用户名合格')
         this.$axios
           .post(
-            'http://10.176.34.161:8001/api/userManagement/user/checkRegistered',
+            'http://10.176.34.161:8000/api/userManagement/user/checkRegistered',
             {
               userName: this.registeredForm.userName
             }
@@ -104,6 +117,7 @@ export default {
                 var temp = {
                   userName: this.registeredForm.userName,
                   password: this.registeredForm.password,
+                  userMail: this.registeredForm.userMail,
                   isAdmin: 0,
                   userNoteInformation: '',
                   finishedTask: [],
@@ -112,11 +126,13 @@ export default {
                 var str = JSON.stringify(temp)
                 console.log(str)
                 this.$axios.post(
-                  'http://10.176.34.161:8001/api/userManagement/user/insertUser',
+                  'http://10.176.34.161:8000/api/userManagement/user/insertUser',
                   {
                     user_info_form: str
                   }
-                )
+                ).then(res=>{
+                  console.log(res)
+                })
                 router.push('/Login')
               }
             } else {

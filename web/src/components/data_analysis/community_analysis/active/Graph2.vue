@@ -1,7 +1,7 @@
 <template>
   <!-- 是否需要分析资金在行业间流动情况 -->
   <div>
-    <p>资金在行业间流动情况</p>
+    <h5>资金在行业间流动情况</h5>
     <div id="community_container2_2"></div>
   </div>
 </template>

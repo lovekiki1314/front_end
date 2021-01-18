@@ -1,7 +1,7 @@
 <template>
   <!-- 行业用户及交易情况统计 -->
   <div>
-    <p>行业用户及交易情况统计</p>
+    <h5>行业用户及交易情况统计</h5>
     <div id="community_container1_1"></div>
   </div>
 </template>

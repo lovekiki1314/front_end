@@ -1,9 +1,9 @@
 <template>
   <!--社区间资金沉积情况-->
   <div>
-    <p>行业间资金沉积情况</p>
+    <h5>行业间资金沉积情况</h5>
     <el-table :data="dataForMoneyDeposit"
-              :header-cell-style="{background:'#F56C6C',color:'#ffffff'}">
+              :header-cell-style="{background:'#409EFF',color:'#ffffff'}">
       <el-table-column prop="type"
                        label="成员名称"
                        sortable></el-table-column>

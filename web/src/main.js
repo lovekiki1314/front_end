@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router' //路由
 import store from './store' //读取记录状态
 import axios from 'axios' // axios
 import qs from 'qs'
@@ -13,16 +12,27 @@ import echarts from 'echarts'
 import { Chart } from '@antv/g2'
 import g6 from '@antv/g6'
 import VueCookies from 'vue-cookies'
+import router from './router'
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 
+import showdown from 'showdown'
+Vue.prototype.md2html = (md)=> {
+  let converter = new showdown.Converter()
+  let text = md.toString()
+  let html = converter.makeHtml(text)
+  return html
+}
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(BootstrapVue)
+Vue.use(Antd)
 Vue.use(VueCookies)
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 Vue.prototype.$Chart = Chart
 Vue.prototype.$g6 = g6
-Vue.prototype.HOST = "http://10.176.34.161:8001/api"
+Vue.prototype.HOST = "http://10.176.34.161:8000/api"
 
 // 对axios的处理
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -51,7 +61,11 @@ router.beforeEach((to, from, next) => {
     }
     next();
 })
-
+//路由跳转后，页面回到顶部
+router.afterEach(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  })
 new Vue({
     router,
     store,

@@ -1,7 +1,7 @@
 <template>
   <!-- 是否需要分析用户在行业间迁移情况 -->
   <div>
-    <p>用户在行业间迁移情况</p>
+    <h5>用户在行业间迁移情况</h5>
     <div id="community_container2_3"></div>
   </div>
 </template>

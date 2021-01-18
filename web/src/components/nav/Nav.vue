@@ -1,289 +1,182 @@
 <template>
-  <div>
-    <div class="nav">
-      <el-row>
-        <el-col :span="1">
-          <img src="../../assets/fdulogo1.png" height="40" class="img"/>
-        </el-col>
-        <el-col :span="11">
-          <p class="projectTitle">
-            {{ projectTitle }} 
-          </p>
-          <p class="projectTitle1">
-            {{daslab}}
-          </p>
-        </el-col>
-        <el-col :span="12">
-          <el-menu :default-active="activeIndex"
-                   class="el-menu-demo"
-                   mode="horizontal"
-                   text-color="#40a0ffce"
-                   background-color="#ffffff"
-                   active-text-color="#409EFF"
-                   @select="handleSelect">
-            <el-menu-item index="1"
-                          @click="returnHomePage"
-                          class="menuItem">
-              <template slot="title">{{ homePage }}</template>
-            </el-menu-item>
-            <el-menu-item index="2"
-                          @click="systeminfo">系统简介
-            </el-menu-item>
-            <el-menu-item index="3"
-                          @click="upload">上传
-            </el-menu-item>
-            <el-submenu index="3"
-                        class="menuItem"
-                        v-if="isAdmin==0 || isAdmin==2">
-              <template slot="title">{{ dataQuery }}</template>
-              <el-menu-item index="3-1"
-                            class="menuSubItem"
-                            @click="blockQueryClick">{{ BlockQuery }}</el-menu-item>
-              <el-menu-item index="3-2"
-                            class="menuSubItem"
-                            @click="transactionQueryClick">{{ TransactionQuery }}</el-menu-item>
-              <el-menu-item index="3-3"
-                            class="menuSubItem"
-                            @click="adressQueryClick">{{ AdressQuery }}</el-menu-item>
-              <el-menu-item index="3-4"
-                            class="menuSubItem"
-                            @click="bitcoinBlockchainDevelopmentClick">{{bitcoinBlockchainDevelopment}}</el-menu-item>
-              <el-menu-item index="3-5"
-                            class="menuSubItem"
-                            @click="bitcoinSpendingStatisticClick">{{ bitcoinSpendingStatistic }}</el-menu-item>
-            </el-submenu>
-            <el-submenu index="3"
-                        class="menuItem"
-                        disabled
-                        v-else>
-              <template slot="title">{{ dataQuery }}</template>
-              <el-menu-item index="3-1"
-                            class="menuSubItem"
-                            @click="blockQueryClick">{{ BlockQuery }}</el-menu-item>
-              <el-menu-item index="3-2"
-                            class="menuSubItem"
-                            @click="transactionQueryClick">{{ TransactionQuery }}</el-menu-item>
-              <el-menu-item index="3-3"
-                            class="menuSubItem"
-                            @click="adressQueryClick">{{ AdressQuery }}</el-menu-item>
-              <el-menu-item index="3-4"
-                            class="menuSubItem"
-                            @click="bitcoinBlockchainDevelopmentClick">{{bitcoinBlockchainDevelopment}}</el-menu-item>
-              <el-menu-item index="3-5"
-                            class="menuSubItem"
-                            @click="bitcoinSpendingStatisticClick">{{ bitcoinSpendingStatistic }}</el-menu-item>
-            </el-submenu>
-            <el-submenu index="4"
-                        class="menuItem"
-                        v-if="isAdmin==2">
-              <template slot="title"> {{ dataAnalysis }}</template>
-              <el-menu-item index="4-1"
-                            @click="CommunityAnalysisClick"
-                            class="menuItem">{{ communityActivityAnalysis }}
-              </el-menu-item>
-              <el-menu-item index="4-2"
-                            @click="illegalActivitiyAnalysisClick"
-                            class="menuItem">
-                {{ illegalActivitiyAnalysis }}
-              </el-menu-item>
-              <el-menu-item index="4-3"
-                            @click="FundChainTrackingClick"
-                            class="menuItem">
-                {{ fundChainTracking }}
-              </el-menu-item>
-            </el-submenu>
-            <el-submenu index="4"
-                        class="menuItem"
-                        disabled
-                        v-else>
-              <template slot="title"> {{ dataAnalysis }}</template>
-              <el-menu-item index="4-1"
-                            @click="CommunityAnalysisClick"
-                            class="menuItem">
-                {{ communityActivityAnalysis }}
-              </el-menu-item>
-              <el-menu-item index="4-2"
-                            @click="illegalActivitiyAnalysisClick"
-                            class="menuItem">
-                {{ illegalActivitiyAnalysis }}
-              </el-menu-item>
-              <el-menu-item index="4-3"
-                            @click="FundChainTrackingClick"
-                            class="menuItem">
-                {{ fundChainTracking }}
-              </el-menu-item>
-            </el-submenu>
-            <el-submenu index="5"
-                        v-if="isAdmin==2">
-              <template slot="title">地址关联分析</template>
-              <el-menu-item index="5-1"
-                            @click="singleAddressClusterClick">单地址聚类</el-menu-item>
-              <el-menu-item index="5-2"
-                            @click="allAddressClusterClick">全量聚类</el-menu-item>           
-            </el-submenu>
-            <el-submenu index="5"
-                        disabled
-                        v-else>
-              <template slot="title">地址关联分析</template>
-              <el-menu-item index="5-1"
-                            @click="singleAddressClusterClick">单地址聚类</el-menu-item>
-              <el-menu-item index="5-2"
-                            @click="allAddressClusterClick">全量聚类</el-menu-item> 
-            </el-submenu>
-            <template v-if="isAdmin==2 || isAdmin==1">
-              <el-menu-item index="6"
-                            @click="userCenterClick"
-                            class="menuItem">
-                <div>
-                  <label>{{UserCenter}}</label>
-                </div>
-              </el-menu-item>
-            </template>
-            <template v-else>
-              <el-menu-item @click="loginClick">{{RegisteredOrLogin}}</el-menu-item>
-            </template>
-          </el-menu>
-        </el-col>
-      </el-row>
+    <div id="header">
+        <div class="logo" >
+          <img src="../../assets/logo_48.png" alt="logo">
+          <span class="span_word">区块链数据智能分析平台</span>
+        </div>
+        <ul class="nav">
+            <router-link class="menu-item" to='/home'>首页</router-link>
+            <a class="menu-item disabled" v-if="!IsLogin"  @click="check()">链内分析</a>
+            <router-link class="menu-item" v-else to="/singleChainAnalysis">链内分析</router-link>
+            <a class="menu-item disabled" v-if="!IsLogin" @click="check()">跨链分析</a>
+            <router-link class="menu-item" v-else to="/multiChainAnalysis">跨链分析</router-link>
+            <a class="menu-item disabled" v-if="!IsLogin" @click="check()">数据源管理</a>
+            <router-link class="menu-item" v-else to="/dataManagement">数据源管理</router-link>
+          <router-link class="menu-item" to="/about">关于</router-link>
+            <router-link class="menu-item-button" v-if="!IsLogin" to="/login">登录</router-link>
+            <router-link class="menu-item" v-else to="/userCenter">个人信息</router-link>
+        </ul>
+      <div id="price">
+        <span style="margin-left: 8%;font-weight: 800">BTC</span><span class="middle">$ {{BTC}}</span><span  v-if="BTCGap>0" class="green middle">↑ +{{BTCGap}}%</span><span v-else class="red middle">↓ {{BTCGap}}%</span>
+        <span style="margin-left: 8%;font-weight: 800">ETH</span><span class="middle">$ {{ETH}}</span><span  v-if="ETHGap>0" class="green middle">↑ +{{ETHGap}}%</span><span v-else class="red middle">↓ {{ETHGap}}%</span>
+        <span style="margin-left: 8%;font-weight: 800">EOS</span><span class="middle">$ {{EOS}}</span><span  v-if="EOSGap>0" class="green middle">↑ +{{EOSGap}}%</span><span v-else class="red middle">↓ {{EOSGap}}%</span>
+        <span style="float: right;padding-right: 30px">{{time}}</span>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
-import router from '../../router'
-import store from '../../store'
+
 export default {
+  name: 'Nav',
   data () {
     return {
-      projectTitle: '比特币区块链数据分析平台',
-      homePage: '首页',
-      dataQuery: '数据分析',
-      BlockQuery: '区块查询',
-      TransactionQuery: '交易查询',
-      AdressQuery: '地址查询',
-      dataStatistic: '活动智能分析',
-      bitcoinBlockchainDevelopment: '比特币区块链发展情况',
-      bitcoinSpendingStatistic: '比特币花费情况',
-      dataAnalysis: '活动智能分析',
-      communityActivityAnalysis: '行业活动分析',
-      illegalActivitiyAnalysis: '非法活动分析',
-      fundChainTracking: '资金链追踪',
-      RegisteredOrLogin: '注册/登录',
-      UserCenter: '任务中心',
-      daslab: '数据分析与安全实验室'
-    };
+      IsLogin: this.$store.state.isLogin,
+      time: this.timeFormat(new Date()),
+      BTC: 0,
+      BTCGap: 0,
+      EOS: 0,
+      EOSGap: 0,
+      ETH: 0,
+      ETHGap:0,
+    }
   },
-  computed: {
-    isLogin: function () {
-      return this.$store.state.isLogin
-    },
-    isAdmin: function() {
-      return this.$store.state.isAdmin
+  beforeMount() {
+    this.get();
+  },
+  mounted() {
+    this.timer = setInterval(this.get, 10000);
+    this.timer1 = setInterval(this.updateTime, 1000);
+    if(sessionStorage.getItem("userid") && sessionStorage.getItem("isLogin")){
+      this.$store.state.isLogin = sessionStorage.getItem("isLogin")
+      this.$store.state.id = sessionStorage.getItem("userid")
+      this.$store.state.userName = sessionStorage.getItem("username")
+      this.$store.state.isAdmin = sessionStorage.getItem("isAdmin")
+      this.IsLogin = this.$store.state.isLogin
     }
   },
   methods: {
-    systeminfo() {
-      router.push('/systeminfo')
+    timeFormat(timestamp){
+      let time = new Date(timestamp);
+      let year = time.getFullYear();
+      let month = time.getMonth()+1;
+      let date = time.getDate();
+      let week = time.getDay();
+      let hours = time.getHours();
+      let minutes = time.getMinutes();
+      let seconds = time.getSeconds();
+      return year + '-' + this.addZero(month) + '-' + this.addZero(date) + ' ' + this.addZero(hours) + ':' + this.addZero(minutes) + ':' + this.addZero(seconds) + '  星期' + "日一二三四五六".charAt(week)
     },
-    upload() {
-      router.push('/uploadlabel')
+    updateTime(){
+      this.time = this.timeFormat(new Date())
     },
-    handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+    addZero(num) { return num < 10 ? '0' + num : num },
+    get(){
+      this.$axios.get('https://api.coincap.io/v2/rates/ethereum').then(res => {
+        // this.time = this.timeFormat(res.data.timestamp);
+        let t = this.ETH;
+        this.ETH = parseFloat(res.data.data.rateUsd).toFixed(2);
+        if(t!=0){
+          this.ETHGap = parseFloat((this.ETH/t-1)*100).toFixed(2);
+        }
+      })
+      this.$axios.get('https://api.coincap.io/v2/rates/eos').then(res => {
+        let t = this.EOS;
+        this.EOS = parseFloat(res.data.data.rateUsd).toFixed(2);
+        if(t!=0){
+          this.EOSGap = parseFloat((this.EOS/t-1)*100).toFixed(2);
+        }
+      })
+      this.$axios.get('https://api.coincap.io/v2/rates/bitcoin').then(res => {
+        let t = this.BTC;
+        this.BTC = parseFloat(res.data.data.rateUsd).toFixed(2);
+        if(t!=0){
+          this.BTCGap = parseFloat((this.BTC/t-1)*100).toFixed(2);
+        }
+      })
     },
-    returnHomePage () {
-      router.push('/')
-    },
-    blockQueryClick () {
-      router.push('/data_query/blockQuery')
-    },
-    transactionQueryClick () {
-      router.push('/data_query/transactionQuery')
-    },
-    adressQueryClick () {
-      router.push('/data_query/addressQuery')
-    },
-    bitcoinBlockchainDevelopmentClick () {
-      router.push('/data_statistics/bitcoinBlockchainDevelopment')
-    },
-    bitcoinSpendingStatisticClick () {
-      router.push('/data_statistics/bitcoinSpendingStatistic')
-    },
-    CommunityAnalysisClick () {
-      router.push('/data_analysis/communityAnalysis')
-    },
-    illegalActivitiyAnalysisClick () {
-      router.push('/data_analysis/illegalActivitiyAnalysis')
-    },
-    FundChainTrackingClick () {
-      router.push('/data_analysis/trackingModel')
-    },
-    singleAddressClusterClick () {
-      router.push('/cluster/singleCluster')
-    },
-    allAddressClusterClick () {
-      router.push('/cluster/allCluster')
-    },
-    userCenterClick () {
-      var isAdmin = this.$store.state.isAdmin
-      if (isAdmin == 2) {
-        router.push('/userCenter')
-      } else if (isAdmin == 1) {
-        router.push('/Admin')
+    check () {
+      if (!this.IsLogin) {
+        alert('请先登录')
       }
-    },
-    loginClick () {
-      sessionStorage.removeItem("userid")
-      sessionStorage.removeItem("isLogin")
-      sessionStorage.removeItem("username")
-      sessionStorage.removeItem("isAdmin")
-      this.$store.state.isLogin = !this.$store.state.isLogin
-      this.$store.state.id = null
-      this.$store.state.userName = null
-      this.$store.state.isAdmin = null
-      console.log(this.$store.state.isLogin)
-      router.push('/Login')
     }
-  },
+  }
 }
 </script>
 
 <style scoped>
-a {
-  color: #282828;
-  text-decoration: none;
+#header{
+  padding-right: 20px;
+  padding-left: 20px;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 13.7vh;
+  background-color: rgb(255, 255, 255);
+  /* background-color:rgb(255, 255, 255,0); */
+  box-shadow: 0px 0px 2px rgb(199, 199, 199);
 }
-a:hover {
-  color: #409eff;
-  text-decoration: none;
-  font-weight: bold;
+.span_word{
+  position:relative;
+  top:25%;
+  font-size:25px;
+  color: #50a6fc;
 }
-.projectTitle {
-  margin-top: 5px;
-  text-indent: 5px;
-  color: #409eff;
-  font-size: 17px;
-  margin-bottom: 2px;
+.logo {
+  width: 500px;
+  height: 31px;
+  background: rgba(255, 255, 255,0);
+  float: left;
+  line-height: 31px;
 }
-.projectTitle1 {
-  margin-top: 4px;
-  text-indent: 5px;
-  color: #409eff;
-  font-size: 11px;
-  margin-bottom: 4px;
-}
-
-.nav {
-  display: block;
-  font-weight: bold;
-  border-bottom: solid 1px #e8e8e8;
-}
-.img {
-  margin-top: 10px;
-  margin-right: 20px;
+.menu-item{
+  width: auto;
   margin-left: 10px;
-  margin-bottom: 10px;
-  border-right: #409eff solid 1px;
+  margin-right: 10px;
+  color: black;
 }
-
+.disabled{
+  color:gray;
+}
+.menu-item-button{
+  margin-top:-2%;
+  padding-top:2%;
+  width: 50px;
+  text-align:center;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: black;
+  border:1px solid;
+  border-radius: 10px;
+  height:40px;
+}
+.nav{
+  margin-top:1.5%;
+  margin-right: 20px;
+  float: right;
+}
+#price{
+  width: 100%;
+  border-top: 1px solid;
+  font-weight: 600;
+  margin-top: 9vh;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+}
+#price span{
+  font-style:Segoe UI Light;
+  font-size: large;
+}
+.red{
+  color:red;
+}
+.green{
+  color: green;
+}
+.middle{
+  margin-left: 1%;
+}
+a.router-link-active{
+  color: #50a6fc;
+}
 </style>

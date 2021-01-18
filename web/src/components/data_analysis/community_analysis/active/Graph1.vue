@@ -2,11 +2,11 @@
   <!-- 重要的行业成员情况 -->
   <div>
     <div id="community_container2_1">
-      <p>重要的行业成员情况</p>
+      <h5>重要的行业成员情况</h5>
       <el-table :data="dataForRole.slice((currentPage-1)*pagesize,currentPage*pagesize)"
                 stripe
                 style="width: 100%"
-                :header-cell-style="{background:'#67C23A',color:'#ffffff'}">
+                :header-cell-style="{background:'#409EFF',color:'#ffffff'}">
         <el-table-column prop="role"
                          label="重要成员"
                          sortable

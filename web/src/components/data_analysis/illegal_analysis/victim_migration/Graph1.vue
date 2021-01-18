@@ -1,7 +1,7 @@
 <template>
   <!--受害者迁移情况-->
   <div>
-    <p>受害者迁移情况</p>
+    <h5>受害者迁移情况</h5>
     <div id="illegal_container3_1"></div>
   </div>
 </template>

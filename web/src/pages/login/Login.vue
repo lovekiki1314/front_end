@@ -1,6 +1,7 @@
 <template>
-  <div class="page">
+  <div>
     <Navigation />
+    <div style="padding:1px ;height: 90vh">
     <el-form :model="loginForm"
              :rules="fieldRules"
              ref="loginForm"
@@ -34,12 +35,17 @@
                    @click.native.prevent="login"
                    :loading="logining">登 录</el-button>
       </el-form-item>
+      <div align='right'> <el-link @click="forget_pwd" >找回密码</el-link></div>
+     
     </el-form>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import Navigation from '../../components/nav/Nav'
+import Footer from '../../components/nav/Footer'
+import Navigation from '../../components/nav/Nav1'
 import router from '../../router'
 import store from '../../store'
 // import Cookies from 'js-cookie'
@@ -47,20 +53,6 @@ export default {
   name: 'Login',
   data () {
     return {
-      options: [
-        {
-          value: '选项1',
-          label: '普通用户'
-        },
-        {
-          value: '选项2',
-          label: '管理员'
-        },
-        {
-          value: '选项3',
-          label: '超级管理员'
-        }
-      ],
       value: '选项1',
       logining: false,
       loginForm: {
@@ -77,6 +69,7 @@ export default {
     }
   },
   components: {
+    Footer,
     Navigation
   },
   mounted() {
@@ -90,18 +83,21 @@ export default {
     }
   },
   methods: {
+    forget_pwd(){
+      router.push('/changepwd')
+    },
     login () {
       const userNameReg = /^[a-zA-Z0-9_-]{2,16}$/
       const passwordReg = /^[a-zA-Z0-9~!@&%#_]{5,16}$/
       if (this.loginForm.userName === '' || this.loginForm.password === '') {
         alert('账号或密码不能为空')
-      } 
+      }
       else if(!userNameReg.test(this.loginForm.userName) || !passwordReg.test(this.loginForm.password)){
         alert('输入非法特殊字符，请重新输入账号或密码')
       }
       else {
         this.$axios
-          .post('http://10.176.34.161:8001/api/userManagement/user/login', {
+          .post('http://10.176.34.161:8000/api/userManagement/user/login', {
             userName: this.loginForm.userName,
             password: this.loginForm.password
           })
@@ -120,7 +116,7 @@ export default {
               sessionStorage.setItem("isLogin",login)
               sessionStorage.setItem("username",this.loginForm.userName)
               sessionStorage.setItem("isAdmin",res.data.isAdmin)
-              router.push('/')
+              router.push('/home')
             } else {
               alert('用户名或账号输入错误')
             }

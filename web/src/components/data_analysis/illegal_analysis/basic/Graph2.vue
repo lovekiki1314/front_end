@@ -1,9 +1,9 @@
 <template>
   <!--非法活动交易量统计-->
   <div>
-    <p>非法活动交易量统计</p>
+    <h5>非法活动交易量统计</h5>
     <el-table :data="dataForTx_info"
-              :header-cell-style="{background:'#67C23A',color:'#ffffff'}">
+              :header-cell-style="{background:'#409EFF',color:'#ffffff'}">
       <el-table-column prop="num"
                        label="交易次数"
                        sortable></el-table-column>

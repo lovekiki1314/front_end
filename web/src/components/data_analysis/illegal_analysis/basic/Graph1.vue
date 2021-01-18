@@ -1,9 +1,9 @@
 <template>
   <!--非法活动活跃时间段-->
   <div>
-    <p>非法活动活跃时间段</p>
+    <h5>非法活动活跃时间段</h5>
     <el-table :data="dataForIllegalTime"
-              :header-cell-style="{background:'#67C23A',color:'#ffffff'}">
+              :header-cell-style="{background:'#409EFF',color:'#ffffff'}">
       <el-table-column prop="startTime"
                        label="开始时间"
                        sortable></el-table-column>

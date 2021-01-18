@@ -6,8 +6,6 @@ const state = {
     userInfo: JSON.parse(localStorage.getItem("userInfo")) || {},//先去localStorage中获取数据
     userid: window.sessionStorage.getItem('userid'),
     username: window.sessionStorage.getItem('username'),
-    userid: window.sessionStorage.getItem('userid'),
-    userid: window.sessionStorage.getItem('userid')
 }
 const mutations = {
 	setuserInfo(state, v) {
