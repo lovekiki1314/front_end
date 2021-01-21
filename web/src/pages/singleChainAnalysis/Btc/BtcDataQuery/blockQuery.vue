@@ -241,10 +241,7 @@ export default {
           }
           console.log(this.transactionlist)
           console.log(this.info)
-          var temp = this.info.time
-          this.info.time = new Date(parseInt(temp) * 1000)
-            .toLocaleString()
-            .replace(/:\d{1,2}$/, ' ')
+
           this.blockHashQuery = true
         } else {
           this.$alert(
