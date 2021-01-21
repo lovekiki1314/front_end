@@ -90,7 +90,7 @@
             <!--</tr>-->
         </table>
         <div class="TransactionTable">
-          <br>相关的交易哈希列表<br>
+          <br >相关的交易哈希列表<br>
           <!-- <el-radio-group v-model="form.type" @change="changetype">
             <el-radio label="all">全部</el-radio>
             <el-radio label="ins">作为输入地址</el-radio>
@@ -131,7 +131,11 @@
           <div v-show="checktime">
             <el-table :data="transactionList"
             :header-cell-style="{background:'#50a6fc',color:'#ffffff'}"
-            >
+            v-loading="loadingShow" 
+	          element-loading-text="数据正在加载中...">
+            <!-- <template slot="empty">
+              <img src="logo.ico" alt="暂无数据">
+            </template> -->
               <el-table-column
                         prop="transactionhash"
                         label="交易哈希"
@@ -172,6 +176,7 @@ import { zh } from 'vuejs-datepicker'
 export default {
   data () {
     return {
+      loadingShow : false,
       Height: 0,
       length: 0,
       start_time: '',
@@ -247,6 +252,7 @@ export default {
       return moment(date).format('YYYY-MM-DD HH:mm:ss') //格式化日期对象
     },
     choose_date(){
+      this.loadingShow = true
       this.form.start_time = this.customFormatter(this.form.start_time)
       this.form.end_time = this.customFormatter(this.form.end_time)
       console.log('提交')
@@ -254,8 +260,10 @@ export default {
       this.$axios.post('http://10.176.34.161:8000/api/statistics/everyday/stats/btc/address/transactions', this.form).then(res => {
           var content = res.data.content
           var data = res.data
-          console.log(content)
           console.log(data)
+          if(data.result) {
+            this.loadingShow = false
+          }
           this.transactionList = []
           this.length = data.length
           for(var i in content){

@@ -46,6 +46,8 @@ import illegalGraph from '../pages/singleChainAnalysis/Btc/BtcDataAnalysis/illeg
 import TrackingModelShowing from '../pages/singleChainAnalysis/Btc/BtcDataAnalysis/TrackingModelShowing';
 import singleClusterGraph from '../pages/singleChainAnalysis/Btc/BtcCluster/singleClusterGraph';
 import about from '../pages/About/about'
+import aboutus from '../pages/About/aboutus'
+import darknet from '../pages/darknet/data_pre'
 Vue.use(Router)
 
 export default new Router({
@@ -65,9 +67,17 @@ export default new Router({
      name:'about',
      component: about,
      meta:{
-      title:'关于',
+      title:'论文推荐',
     }
    },
+   {
+    path:'/aboutus',
+    name:'aboutus',
+    component: aboutus,
+    meta:{
+     title:'关于我们',
+   }
+  },
    {
      path: '/singleChainAnalysis',
      name: 'singleChainAnalysis',
@@ -76,6 +86,14 @@ export default new Router({
       title:'链内分析',
     }
    },
+   {
+    path: '/darknet',
+    name: 'darknet',
+    component: darknet,
+    meta:{
+     title:'暗网数据',
+   }
+  },
    {
      path: '/singleChainAnalysis/Btc',
      name: 'Btc',

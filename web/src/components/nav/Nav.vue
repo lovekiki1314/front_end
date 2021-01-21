@@ -1,25 +1,26 @@
 <template>
     <div id="header">
         <div class="logo" >
-          <img src="../../assets/logo_48.png" alt="logo">
+          <img src="../../assets/logo_232.png" alt="logo">
           <span class="span_word">区块链数据智能分析平台</span>
         </div>
         <ul class="nav">
             <router-link class="menu-item" to='/home'>首页</router-link>
             <a class="menu-item disabled" v-if="!IsLogin"  @click="check()">链内分析</a>
             <router-link class="menu-item" v-else to="/singleChainAnalysis">链内分析</router-link>
-            <a class="menu-item disabled" v-if="!IsLogin" @click="check()">跨链分析</a>
-            <router-link class="menu-item" v-else to="/multiChainAnalysis">跨链分析</router-link>
+            <a class="menu-item disabled" v-if="!IsLogin" @click="check()">暗网数据</a>
+            <router-link class="menu-item" v-else to="/darknet">暗网数据</router-link>
             <a class="menu-item disabled" v-if="!IsLogin" @click="check()">数据源管理</a>
             <router-link class="menu-item" v-else to="/dataManagement">数据源管理</router-link>
-          <router-link class="menu-item" to="/about">关于</router-link>
+            <router-link class="menu-item" to="/about">论文推荐</router-link>
             <router-link class="menu-item-button" v-if="!IsLogin" to="/login">登录</router-link>
             <router-link class="menu-item" v-else to="/userCenter">个人信息</router-link>
+            <router-link class="menu-item" to="/aboutus">关于我们</router-link>
         </ul>
       <div id="price">
-        <span style="margin-left: 8%;font-weight: 800">BTC</span><span class="middle">$ {{BTC}}</span><span  v-if="BTCGap>0" class="green middle">↑ +{{BTCGap}}%</span><span v-else class="red middle">↓ {{BTCGap}}%</span>
-        <span style="margin-left: 8%;font-weight: 800">ETH</span><span class="middle">$ {{ETH}}</span><span  v-if="ETHGap>0" class="green middle">↑ +{{ETHGap}}%</span><span v-else class="red middle">↓ {{ETHGap}}%</span>
-        <span style="margin-left: 8%;font-weight: 800">EOS</span><span class="middle">$ {{EOS}}</span><span  v-if="EOSGap>0" class="green middle">↑ +{{EOSGap}}%</span><span v-else class="red middle">↓ {{EOSGap}}%</span>
+        <span style="margin-left: 8%;font-weight: 800;">BTC</span><span class="middle" style="width: 110px;display: inline-block;">$ {{BTC}}</span><span  v-if="BTCGap>0" class="green middle">↑ +{{BTCGap}}%</span><span v-else class="red middle;">↓ {{BTCGap}}%</span>
+        <span style="margin-left: 8%;font-weight: 800">ETH</span><span class="middle" style="width: 80px;display: inline-block;">$ {{ETH}}</span><span  v-if="ETHGap>0" class="green middle">↑ +{{ETHGap}}%</span><span v-else class="red middle">↓ {{ETHGap}}%</span>
+        <span style="margin-left: 8%;font-weight: 800">EOS</span><span class="middle" style="width: 50px;display: inline-block;">$ {{EOS}}</span><span  v-if="EOSGap>0" class="green middle">↑ +{{EOSGap}}%</span><span v-else class="red middle">↓ {{EOSGap}}%</span>
         <span style="float: right;padding-right: 30px">{{time}}</span>
       </div>
     </div>
@@ -32,9 +33,10 @@ export default {
   data () {
     return {
       IsLogin: this.$store.state.isLogin,
+      Isnot : false,
       time: this.timeFormat(new Date()),
-      BTC: 0,
-      BTCGap: 0,
+      BTC: 0.00,
+      BTCGap: 0.00,
       EOS: 0,
       EOSGap: 0,
       ETH: 0,
@@ -45,6 +47,12 @@ export default {
     this.get();
   },
   mounted() {
+    this.BTC = this.BTC.toFixed(2);
+    this.BTCGap = this.BTCGap.toFixed(2);
+    this.ETH = this.ETH.toFixed(2);
+    this.ETHGap = this.ETHGap.toFixed(2);
+    this.EOS = this.EOS.toFixed(2);
+    this.EOSGap = this.EOSGap.toFixed(2);
     this.timer = setInterval(this.get, 10000);
     this.timer1 = setInterval(this.updateTime, 1000);
     if(sessionStorage.getItem("userid") && sessionStorage.getItem("isLogin")){
@@ -105,6 +113,10 @@ export default {
 </script>
 
 <style scoped>
+.price span {
+  display: inline-block;
+}
+
 #header{
   padding-right: 20px;
   padding-left: 20px;
@@ -120,7 +132,7 @@ export default {
   position:relative;
   top:25%;
   font-size:25px;
-  color: #50a6fc;
+  color: black;
 }
 .logo {
   width: 500px;

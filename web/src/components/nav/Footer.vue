@@ -1,7 +1,8 @@
 <template>
   <div>
     <a-layout-footer id="footer">
-      Designed by DASLab
+      Designed by 
+      <img src="../../assets/logo_48.png" alt="logo">
     </a-layout-footer>
     <a-back-top />
     <strong style="color: rgba(64, 64, 64, 0.6)"></strong>

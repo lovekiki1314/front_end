@@ -1,11 +1,18 @@
 <template>
+
   <div>
-    <Nav/>
+    <Nav />
     <div class="divAll">
       <div class="section-header3">
         <h1 class="section-title">数据源管理</h1>
         <span>Dataset</span>
         <p class="section-subtitle">提供公链数据的下载导出、上传服务</p>
+      </div>
+      <br>
+      <hr style='background-color:#50a6fc; height:2px; border:none;'/>
+      <br>
+      <div class="section-header4">
+        <h2 class="section-title">数据下载</h2>
       </div>
       <el-form    ref="form" :model="downloadForm" label-width="150px">
         <el-row type="flex" class="row-bg" justify="center">
@@ -65,7 +72,7 @@
 
       <br>
       <br>
-      <hr>
+      <hr style='background-color:#50a6fc; height:2px; border:none;'/>
       <br><br><br>
 
       <el-form ref="form" :model="uploadForm" label-width="150px">
@@ -191,7 +198,7 @@ export default {
       this.$axios.post('http://10.176.34.161:8000/api/userManagement/download',this.downloadForm)
       .then(res=>{
         const contentDisposition = res.headers['content-disposition'] 
-        const fileName = 'testdownload.txt'
+        const fileName = 'data_download.csv'
         // 以上两行代码获取服务端返回的文件名，当然也可以前端在此定义指定文件名 如：const fileName = test.xls
         let blob = new Blob([res.data], {
           type: 'text/csv',    // 将会被放入到 blob 中的数组内容的 MIME 类型,常用 ：application/vnd.ms-excel
@@ -284,9 +291,24 @@ export default {
   text-align: center;
   position: relative;
 }
+.section-header4 {
+  color: #fff;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+}
 .section-header3.section-title {
   font-size: 36px;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #263238;
+  position: relative;
+}
+.section-header4.section-title {
+  font-size: 16px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;

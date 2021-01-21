@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import App from './App.vue'
 import store from './store' //读取记录状态
 import axios from 'axios' // axios
 import qs from 'qs'
@@ -12,11 +11,13 @@ import echarts from 'echarts'
 import { Chart } from '@antv/g2'
 import g6 from '@antv/g6'
 import VueCookies from 'vue-cookies'
-import router from './router'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
-
 import showdown from 'showdown'
+import router from './router'
+import App from './App.vue'
+
+
 Vue.prototype.md2html = (md)=> {
   let converter = new showdown.Converter()
   let text = md.toString()

@@ -309,7 +309,6 @@ export default {
   padding: 150px 20% 10px 20%;
   font-family: PingFang SC;
   font-weight: bold;
- 
 }
 .erroMsg {
   margin: 0 20%;

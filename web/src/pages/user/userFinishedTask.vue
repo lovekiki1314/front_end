@@ -4,7 +4,8 @@
                 style="width: 100%;margin-top: -20px"
                 border
                 :header-cell-style="{background:'#50a6fc',color:'#ffffff'}"
-               >
+               v-loading="loadingShow" 
+	          element-loading-text="数据正在加载中...">
 
         <el-table-column prop="QueryItem"
                          label="已完成项目"
@@ -74,6 +75,7 @@
     },
     data () {
       return {
+        loadingShow : false,
         currentPage: 1, // 初始页
         pagesize: 5, //    每页的数据
         finishedList: []
@@ -99,7 +101,7 @@
         console.log(this.currentPage) // 点击第几页
       },
       handleFinishedList () {
-        console.log('完成任务')
+        this.loadingShow = true
         this.$axios
           .post('http://10.176.34.161:8000/api/userManagement/user/finishedWork', {
             id: this.$store.state.id
@@ -107,8 +109,10 @@
           .then(res => {
             console.log('已完成任务')
             console.log(res.data)
-            console.log(res.data.content)
             var content = res.data.content
+            if(res.data.result == true){
+              this.loadingShow = false
+            }
             this.finishedList = []
             for (var i in content) {
               if (content[i] != null) {
@@ -117,6 +121,8 @@
                 var inputDataJson = JSON.parse(content[i].params)
                 switch (content[i].type) {
                   case 'community':
+                    var basictocn = ['行业用户及交易情况统计','行业结构可视化']
+                    var activetocn = ['重要的行业成员情况','资金在行业间的流动情况','用户在行业间迁移情况']
                     temp['QueryItem'] = '行业分析'
                     var temp1 = {}
                     if (inputDataJson.startTime !== '') {
@@ -129,10 +135,16 @@
                       temp1['时间单元'] =  inputDataJson.timeUnit
                     }
                     if (inputDataJson.basic_info !== '') {
-                      temp1['基础维度'] =  inputDataJson.basic_info
+                      temp1['基础维度'] = []
+                      for (var i in inputDataJson.basic_info){
+                        temp1['基础维度'].push(basictocn[(inputDataJson.basic_info[i]-'0')-1]) 
+                      }
                     }
                     if (inputDataJson.industry_active_info !== '') {
-                      temp1['活跃维度'] =  inputDataJson.industry_active_info
+                      temp1['活跃维度'] = []
+                      for (var i in inputDataJson.industry_active_info){
+                        temp1['活跃维度'].push(activetocn[(inputDataJson.industry_active_info[i]-'0')-1]) 
+                      }
                     }
                     if (inputDataJson.address !== '') {
                       temp1['查询的地址'] =  inputDataJson.address
@@ -143,6 +155,8 @@
                     temp['InputData'] = temp1
                     break
                   case 'illegal':
+                    var basictocn = ['非法活动活跃时间段', '非法活动交易量统计']
+                    var trantocn = ['行业间资金流经情况','行业间资金沉淀情况','重要成员情况']
                     temp['QueryItem'] = '非法活动'
                     var temp1 = {}
                     if (inputDataJson.illegalAcitivityName!= '') {
@@ -155,13 +169,19 @@
                       temp1['查询的地址'] = inputDataJson.address
                     }
                     if (inputDataJson.basic_info != '') {
-                      temp1['基础维度'] = inputDataJson.basic_info
+                      temp1['基础维度'] = []
+                      for (var i in inputDataJson.basic_info){
+                        temp1['基础维度'].push(basictocn[(inputDataJson.basic_info[i]-'0')-1]) 
+                      }
                     }
                     if (inputDataJson.hash!= '') {
                       temp1['交易哈希'] = inputDataJson.hash
                     }
                     if (inputDataJson.money_transfer != '') {
-                      temp1['资金转移'] = inputDataJson.money_transfer
+                      temp1['资金转移'] = []
+                      for(var i in inputDataJson.money_transfer){
+                        temp1['资金转移'].push(trantocn[inputDataJson.money_transfer[i]-1])
+                      }
                     }
                     if (inputDataJson.victim_migration != '') {
                       temp1['受害者迁移'] = 'victim_migration' + inputDataJson.victim_migration
@@ -175,12 +195,13 @@
                     break
                   case 'tracking':
                     temp['QueryItem'] = '资金追踪'
+                    var methodtocn = ['Poison','Haircut','FIFO']
                     var temp1 = {}
                     if (inputDataJson.depth !== '') {
                       temp1['查询深度'] =  inputDataJson.depth
                     }
                     if (inputDataJson.method !== '') {
-                      temp1['追踪方法'] = inputDataJson.method
+                      temp1['追踪方法'] = methodtocn[(inputDataJson.method-'0')]
                     }
                     if (inputDataJson.tx_hash !== '') {
                       temp1['查询的哈希'] =  inputDataJson.tx_hash
