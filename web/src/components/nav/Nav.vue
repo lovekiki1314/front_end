@@ -13,9 +13,10 @@
             <a class="menu-item disabled" v-if="!IsLogin" @click="check()">数据源管理</a>
             <router-link class="menu-item" v-else to="/dataManagement">数据源管理</router-link>
             <router-link class="menu-item" to="/about">论文推荐</router-link>
+            <router-link class="menu-item" to="/aboutus">关于我们</router-link>
             <router-link class="menu-item-button" v-if="!IsLogin" to="/login">登录</router-link>
             <router-link class="menu-item" v-else to="/userCenter">个人信息</router-link>
-            <router-link class="menu-item" to="/aboutus">关于我们</router-link>
+            
         </ul>
       <div id="price">
         <span style="margin-left: 8%;font-weight: 800;">BTC</span><span class="middle" style="width: 110px;display: inline-block;">$ {{BTC}}</span><span  v-if="BTCGap>0" class="green middle">↑ +{{BTCGap}}%</span><span v-else class="red middle;">↓ {{BTCGap}}%</span>
