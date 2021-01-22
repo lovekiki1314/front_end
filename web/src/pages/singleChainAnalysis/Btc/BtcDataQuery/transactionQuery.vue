@@ -35,7 +35,7 @@
             <tr>
               <td colspan="2">
                 <p v-for="index in vin.length"
-                   :key="index">{{[index-1]}}<router-link :to="{ name: 'btcAddressQuery', params: { msgKey: vin[index-1].address}}"><span style="color: #50a6fc">{{vin[index-1].address}}</span></router-link>
+                   :key="index">{{[index-1]}}<router-link :to="{ name: 'btcAddressQuery', params: { msgKey: vin[index-1].address}}"><el-tag v-if="vin[index-1].label!=''" size="small">{{vin[index-1].label}}</el-tag><span style="color: #50a6fc">{{vin[index-1].address}}</span></router-link>
                    {{vin[index-1].value}} BTC
                 </p>
 
@@ -44,7 +44,7 @@
               <td colspan="2">
                  <p v-for="index in vout.length"
                    :key="index">{{[index-1]}}<router-link :to="{ name: 'btcAddressQuery', params: { msgKey: vout[index-1].address}}"><span style="color: #50a6fc">{{vout[index-1].address}}</span></router-link>
-                   {{vout[index-1].value}} BTC
+                   <el-tag v-if="vout[index-1].label!=''" size="small">{{vout[index-1].label}}</el-tag> {{vout[index-1].value}}  BTC
                 </p>
               </td>
             </tr>
@@ -107,6 +107,7 @@ import router from '../../../../router'
 export default {
   data () {
     return {
+      label1 : 'bigtiger',
       Height : 0,
       input: true,
       info: '',

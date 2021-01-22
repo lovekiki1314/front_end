@@ -18,7 +18,7 @@
         <el-row type="flex" class="row-bg" justify="center">
           <el-col :span="6"><div class="grid-content bg-purple">
             <el-form-item label="公链名称：">
-              <el-select v-model="downloadForm.type" placeholder="请选择公链名称">
+              <el-select v-model="downloadForm.currency" placeholder="请选择公链名称">
                 <el-option
                   v-for="item in chainName"
                   :key="item.label"
@@ -31,7 +31,7 @@
 
           <el-col :span="6"><div class="grid-content bg-purple">
             <el-form-item label="待下载数据类型:">
-              <el-select v-model="downloadForm.dataType" placeholder="请选择数据类型">
+              <el-select v-model="downloadForm.data_type" placeholder="请选择数据类型">
                 <el-option
                   v-for="item in dataTypes"
                   :key="item.label"
@@ -45,10 +45,12 @@
           <el-col :span="6"><div class="grid-content bg-purple">
             <el-form-item label="请选择开始时间:">
               <el-date-picker
-                v-model="downloadForm.startTime"
+                v-model="downloadForm.start_date"
                 align="right"
                 type="date"
                 placeholder="请选择日期"
+                format="yyyy年 MM月 dd日"
+                value-format="yyyy-MM-dd"
                 :picker-options="pickerOptions">
               </el-date-picker>
             </el-form-item>
@@ -57,10 +59,12 @@
           <el-col :span="6"><div class="grid-content bg-purple">
             <el-form-item label="请选择结束时间：">
               <el-date-picker
-                v-model="downloadForm.finishTime"
+                v-model="downloadForm.end_date"
                 align="right"
                 type="date"
                 placeholder="请选择日期"
+                value-format="yyyy-MM-dd"
+                format="yyyy年 MM月 dd日"
                 :picker-options="pickerOptions">
               </el-date-picker>
             </el-form-item>
@@ -142,10 +146,10 @@ export default {
       }],
 
       dataTypes: [{
-        value: '区块数据',
+        value: 1,
         label: '区块数据'
       }, {
-        value: '交易数据',
+        value: 2,
         label: '交易数据'
       }],
 
@@ -195,10 +199,12 @@ export default {
 
   methods: {
     download(){
+      console.log(this.downloadForm)
+      const fileName = this.downloadForm.currency + '_'  + this.downloadForm.data_type + '_' + this.downloadForm.start_date + '_' + this.downloadForm.end_date + '.csv'
       this.$axios.post('http://10.176.34.161:8000/api/userManagement/download',this.downloadForm)
       .then(res=>{
         const contentDisposition = res.headers['content-disposition'] 
-        const fileName = 'data_download.csv'
+
         // 以上两行代码获取服务端返回的文件名，当然也可以前端在此定义指定文件名 如：const fileName = test.xls
         let blob = new Blob([res.data], {
           type: 'text/csv',    // 将会被放入到 blob 中的数组内容的 MIME 类型,常用 ：application/vnd.ms-excel

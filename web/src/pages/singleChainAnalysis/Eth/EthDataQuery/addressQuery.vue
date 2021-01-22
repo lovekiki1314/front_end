@@ -35,7 +35,7 @@
             </tr>
             <tr>
               <td>地址</td>
-              <td>{{ info.address }}</td>
+              <td>{{ info.address }}  <el-tag v-if="info.label!=''" size="small" style="text-indent: 0px">{{info.label}}</el-tag> </td>
             </tr>
             <tr>
               <td>当前余额</td>
@@ -103,10 +103,6 @@
             <tr>
               <td>交易总次数</td>
               <td>{{ info.txcount }}</td>
-            </tr>
-            <tr v-show="islable">
-              <td>外部标签</td>
-              <td>{{ info.label }}</td>
             </tr>
 
           </table>
@@ -394,6 +390,7 @@ export default {
       console.log(url2);
       this.$axios.get(url).then((res) => {
         if (res.data.result) {
+          console.log(res.data)
           this.show2 = false;
           this.info = res.data;
           // console.log(this.info)

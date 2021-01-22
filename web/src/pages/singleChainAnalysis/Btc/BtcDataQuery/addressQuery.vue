@@ -28,8 +28,8 @@
               <th colspan="2">比特币地址信息总览</th>
             </tr>
             <tr>
-              <td>地址</td>
-              <td>{{info.address}}</td>
+              <td>地址  </td>
+              <td>{{info.address}} <el-tag v-if="info.label!=''" size="small" style="text-indent: 0px">{{info.label}}</el-tag></td>
             </tr>
             <tr>
               <td>当前余额</td>
