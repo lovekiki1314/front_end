@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Navigation from '../../components/nav/Nav1'
+import Navigation from '../../components/nav/Nav'
 import Footer from '../../components/nav/Footer'
 import router from '../../router'
 import store from '../../store'

@@ -45,7 +45,7 @@
 
 <script>
 import Footer from '../../components/nav/Footer'
-import Navigation from '../../components/nav/Nav1'
+import Navigation from '../../components/nav/Nav'
 import router from '../../router'
 import store from '../../store'
 // import Cookies from 'js-cookie'
