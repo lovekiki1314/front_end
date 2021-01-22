@@ -25,7 +25,8 @@
       </el-form>
        
       <div v-show="show" class="transaction-main-body">
-         <el-button type="danger" style="margin:5px 20%" @click="onReset">继续查询</el-button>   
+         <el-button type="danger" style="margin:5px 20%" @click="onReset">继续查询</el-button>
+         <el-button type="primary"  style="margin:5px -20%" @click="trInfor">查看详细信息</el-button>   
          <table class="table">
             <tr>
               <th colspan="2">以太坊交易信息总览</th>
@@ -74,15 +75,15 @@
              <td>交易序号</td>
              <td>{{info.transactionindex}}</td>
            </tr>
-            <tr>
+            <tr v-show="tr">
              <td>r</td>
              <td>{{info.r}}</td>
            </tr>                                                                                            
-            <tr>
+            <tr v-show="tr">
              <td>s</td>
              <td>{{info.s}}</td>
            </tr>
-             <tr>
+             <tr v-show="tr">
              <td>v</td>
              <td>{{info.v}}</td>
             </tr>
@@ -106,6 +107,7 @@ export default {
       vin: '',
       vout: '',
       show2: false,
+      tr: false,
       amount_in: 0,
       amount_out: 0,
       script_in: [],
@@ -181,8 +183,12 @@ export default {
     },
     showInfo(){
       this.show1 = !this.show1
-    }
+    },
+      trInfor(){
+    this.tr = true
   },
+  },
+
 }
 </script>
 

@@ -19,6 +19,7 @@
             
         </ul>
       <div id="price">
+         <span class="classspan"> 币价数据来源：coincap</span>
         <span style="margin-left: 8%;font-weight: 800;">BTC</span><span class="middle" style="width: 110px;display: inline-block;">$ {{BTC}}</span><span  v-if="BTCGap>0" class="green middle">↑ +{{BTCGap}}%</span><span v-else class="red middle;">↓ {{BTCGap}}%</span>
         <span style="margin-left: 8%;font-weight: 800">ETH</span><span class="middle" style="width: 80px;display: inline-block;">$ {{ETH}}</span><span  v-if="ETHGap>0" class="green middle">↑ +{{ETHGap}}%</span><span v-else class="red middle">↓ {{ETHGap}}%</span>
         <span style="margin-left: 8%;font-weight: 800">EOS</span><span class="middle" style="width: 50px;display: inline-block;">$ {{EOS}}</span><span  v-if="EOSGap>0" class="green middle">↑ +{{EOSGap}}%</span><span v-else class="red middle">↓ {{EOSGap}}%</span>
@@ -179,6 +180,11 @@ export default {
 #price span{
   font-style:Segoe UI Light;
   font-size: large;
+}
+#price span.classspan{
+  font-size:smaller;
+  color: rgb(168, 161, 161);
+  font-weight:200;
 }
 .red{
   color:red;
