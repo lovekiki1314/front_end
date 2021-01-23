@@ -76,8 +76,8 @@
         <a-list-item slot="renderItem" slot-scope="item">
           <a-card
             :title="item.address"
-            :hoverable="true"
-            style="width: 80%; margin-top: 2%"
+
+            style="width: 100%; margin-top: 2%"
             :headStyle="{
               color: 'white',
               backgroundColor: '#50a6fc',
@@ -87,8 +87,19 @@
               fontsize: '10px',
             }"
           >
-            所属市场： {{ item.market }}
+          <template>
+            所属市场： {{ item.market }}<br />
+            地址余额： {{ item.balance }} BTC<br />
+            最新交易时间： {{ item.last_time }}<br />
+            总交易次数： {{ item.total_times }}<br />
+            转入次数： {{ item.receive_times }}<br />
+            转入金额： {{ item.receive_amount }} BTC<br />
+            发送次数： {{ item.send_times }}<br />
+            发送金额： {{ item.send_amount }} BTC<br />
+            
+          </template>
           </a-card>
+          
         </a-list-item>
       </a-list>
     </div>
