@@ -98,8 +98,8 @@ export default {
       dataG2: [],
       msg: '',
       form: {
-        startTime: '2010-05-01', // 开始时间
-        endTime: '2010-05-03', // 结束时间
+        startTime: '2019-03-01', // 开始时间
+        endTime: '2019-05-03', // 结束时间
         timeUnit: 2, // 基本时间单位（天）
         basic_info: [], // ⾏业基础特征展示维度
         industry_active_info: [], // ⾏业活跃度分析维度

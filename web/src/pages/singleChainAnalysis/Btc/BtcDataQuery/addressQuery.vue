@@ -312,14 +312,7 @@ export default {
           this.show2 = false
           this.info = res.data
           console.log(this.info)
-          var temp = this.info.first_time
-          var temp1 = this.info.last_time
-          this.info.first_time = new Date(parseInt(temp) * 1000)
-            .toLocaleString()
-            .replace(/:\d{1,2}$/, ' ')
-          this.info.last_time = new Date(parseInt(temp1) * 1000)
-            .toLocaleString()
-            .replace(/:\d{1,2}$/, ' ')
+
           this.blockHashQuery = true
           if(this.info.label != '') {
             this.islable = true
