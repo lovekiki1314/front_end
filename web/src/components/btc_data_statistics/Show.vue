@@ -16,7 +16,7 @@
             <el-table-column 
                   prop="address"
                   label="地址"
-                  width="700"
+                  width="650"
             >
             <template slot-scope="scope">
                           <router-link :to="{ name: 'btcAddressQuery', params: { msgKey: scope.row.address}}"

@@ -52,31 +52,31 @@
               </td>
             </tr>
             <tr>
-              <th colspan="2" class="th">交易总览</th>
-              <th colspan="2" class="th">输入&输出信息</th>
+              <th colspan="3" class="th">交易总览</th>
+              <th colspan="3" class="th">输入&输出信息</th>
             </tr>
             <tr>
               <td>交易大小</td>
-              <td>{{info.size}} 字节</td>
+              <td colspan="2">{{info.size}} 字节</td>
               <td>输入笔数</td>
-              <td>{{info.n_in}}</td>
+              <td colspan="2">{{info.n_in}}</td>
             </tr>
             <tr>
               <td>锁定时间</td>
-              <td>{{info.locktime}}</td>
+              <td colspan="2">{{info.locktime}}</td>
               <td>输入总金额</td>
-              <td>{{amount_in}} BTC</td>
+              <td colspan="2">{{amount_in}} BTC</td>
 
             </tr>
             <tr>
               <td>时间</td>
-              <td>{{info.timestamp}}</td>
+              <td colspan="2">{{info.timestamp}}</td>
               <td>输出笔数</td>
-              <td>{{info.n_out}}</td>
+              <td colspan="2">{{info.n_out}}</td>
             </tr>
             <tr>
-              <td>矿工费</td>
-              <td>{{info.minerFee}} BTC</td>
+              <td style="width: 40px;">矿工费</td>
+              <td colspan="2">{{info.minerFee}} BTC</td>
               <td>输出总金额</td>
               <td>{{amount_out}} BTC</td>
             </tr>

@@ -151,7 +151,7 @@ export default {
   
   methods: {
     paint () {
-      const width = 1500
+      const width = 1200
       const height = 600
       const colors = [
         '#BDD2FD',

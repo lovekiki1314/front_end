@@ -475,6 +475,7 @@ export default {
       }
       this.openFullScreen();
       console.log("已发送");
+      alert('任务请求已提交！')
       this.$axios.post(url, params).then(
         function (res) {
           console.log("接收成功");

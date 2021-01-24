@@ -10,21 +10,21 @@
           <!-- 需要修改routerLink -->
           <a class="left" @click="go(1)">
             <h3>链内数据分析</h3>
-            <h4>想查看三条区块链的链内数据？</h4>
+            
           </a>
         </div>
         <div class="block11">
           <!-- 需要修改routerLink -->
           <a class="center" @click="go(2)">
             <h3>跨链数据分析</h3>
-            <h4>想知道链与链之间的活动关联？</h4>
+            
           </a>
         </div>
         <div class="block11">
           <!-- 需要修改routerLink -->
           <a class="right" @click="go(3)">
             <h3>数据源管理</h3>
-            <h4>想查看三条区块链的链内数据?</h4>
+            
           </a>
         </div>
         <!-- 引导到注册登录 -->

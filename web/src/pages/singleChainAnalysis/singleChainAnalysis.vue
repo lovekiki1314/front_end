@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-bottom: 5%;">
     <Nav></Nav>
     <div class="container" v-bind:style="{ minHeight: Height + 'px' }">
       <div class="section-header">

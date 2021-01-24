@@ -1,5 +1,5 @@
 <template>
-    <div class="divAll">
+    <div class="divAll" style="margin-bottom:5%;">
         <Nav />
          <div class="BtcSystemDevelopmentDetail">
      

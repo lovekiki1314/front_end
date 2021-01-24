@@ -134,7 +134,7 @@
           ></el-col>
 
 
-          <el-col :span="6"
+          <el-col :span="5"
             ><div class="grid-content bg-purple">
               <el-form-item label="标签类型：">
                 <el-select
@@ -154,12 +154,13 @@
 
           <el-col :span="6"
             ><div class="grid-content bg-purple">
-              <el-form-item label="上传信息:">
+              <el-form-item label="上传信息:" style="margin-right:5%;">
                 <el-input
                   type="textarea"
                   :autosize="{ minRows: 3 }"
                   placeholder="请输入内容"
                   v-model="uploadForm.info"
+                  style="margin-right:5px;"
                 >
                 </el-input>
               </el-form-item></div
@@ -291,11 +292,13 @@ export default {
 
   methods: {
     download() {
+      var cointocn = ['BTC','ETH','EOS']
+      var typetocn = ['block','tx']
       console.log(this.downloadForm);
       const fileName =
-        this.downloadForm.currency +
+        cointocn[this.downloadForm.currency-1] +
         "_" +
-        this.downloadForm.data_type +
+        typetocn[this.downloadForm.data_type-1] +
         "_" +
         this.downloadForm.start_date +
         "_" +

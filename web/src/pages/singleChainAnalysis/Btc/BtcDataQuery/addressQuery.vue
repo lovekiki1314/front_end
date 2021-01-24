@@ -79,10 +79,7 @@
               <td>总交易次数</td>
               <td>{{info.total_times}}</td>
             </tr>
-            <tr v-show="islable">
-              <td>外部标签</td>
-              <td>{{info.label}}</td>
-            </tr>
+
             <!--<tr>-->
             <!--<td>Activity Tag</td>-->
             <!--<td v-if="info.activity_tag!='null'">{{info.activity_tag}}</td>-->
@@ -139,7 +136,7 @@
               <el-table-column
                         prop="transactionhash"
                         label="交易哈希"
-                        width = "800">
+                        width = "650">
                 <template slot-scope="scope">
                             <router-link :to="{ name: 'btcTransactionQuery', params: { msgKey: scope.row.transactionhash}}"
                             >{{scope.row.transactionhash}}</router-link>

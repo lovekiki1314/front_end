@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" style="padding-bottom:5%;">
     <Nav />
 
     <div class="section-header">
