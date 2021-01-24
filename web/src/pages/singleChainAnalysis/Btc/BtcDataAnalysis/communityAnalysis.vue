@@ -111,7 +111,7 @@ export default {
   components: {
     Navigation,
     Graph1_1,
-    // Graph1_2,
+    Graph1_2,
     Graph2_1,
     Graph2_2,
     Graph2_3,

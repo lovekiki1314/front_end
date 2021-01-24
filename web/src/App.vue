@@ -23,9 +23,9 @@ export default {
     }
   },
   mounted(){
-    //动态设置内容高度 让footer始终居底   header+footer的高度是100
-      this.Height = document.documentElement.clientHeight - 70;  　　//监听浏览器窗口变化　
-      window.onresize = ()=> {this.Height = document.documentElement.clientHeight -70}
+    // //动态设置内容高度 让footer始终居底   header+footer的高度是100
+    //   this.Height = document.documentElement.clientHeight - 70;  　　//监听浏览器窗口变化　
+    //   window.onresize = ()=> {this.Height = document.documentElement.clientHeight -70}
   }
 }
 </script>

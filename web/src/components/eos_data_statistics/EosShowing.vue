@@ -442,8 +442,8 @@ export default {
       if (this.miner_search_flag == '1') {
         this.show_flag = 'm'
         if (this.click_flag == '0') {
-          this.form.start_date = this.customFormatter(new Date(2018, 5, 10))
-          this.form.end_date = this.customFormatter(new Date(2018, 5, 26))
+          this.form.start_date = this.customFormatter(new Date(2019, 1, 10))
+          this.form.end_date = this.customFormatter(new Date(2019, 2, 20))
           this.whether_show_org = true
           this.whether_show_click = false
           this.whether_show_pie = false
@@ -462,8 +462,8 @@ export default {
       if (this.miner_search_flag == '0') {
         this.show_flag = 'o'
         if (this.click_flag == '0') {
-            this.form.start_date = this.customFormatter(new Date(2018, 5, 10))
-            this.form.end_date = this.customFormatter(new Date(2018, 7, 10))
+            this.form.start_date = this.customFormatter(new Date(2019, 1, 10))
+            this.form.end_date = this.customFormatter(new Date(2019, 2, 20))
 
             this.whether_show_org = true
             this.whether_show_click = false

@@ -11,7 +11,7 @@
           <el-input type="text"
                     v-model="form.address"
                     style="width:820px"
-                    placeholder="请输入待查询的比特币地址" id="input1"></el-input>
+                    placeholder="请输入待查询的柚子币地址" id="input1"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary"

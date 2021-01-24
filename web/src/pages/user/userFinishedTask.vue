@@ -12,7 +12,7 @@
                          width="200">
         </el-table-column>
         <el-table-column label="已输入数据"
-                         width="600">
+                         width="750">
           <template slot-scope="scope">
           <span style="margin-left: 10px">
             <json-viewer
@@ -23,19 +23,19 @@
           </span>
           </template>
         </el-table-column>
-<!--        <el-table-column-->
-<!--                         label="已输入数据"-->
-<!--                         width="400">-->
-<!--          <template slot-scope="scope">-->
-<!--          <span style="margin-left: 10px">-->
-<!--            <json-viewer-->
-<!--            :value="scope.row.QueryData"-->
-<!--            :expand-depth=5-->
-<!--            copyable-->
-<!--            boxed></json-viewer>-->
-<!--          </span>-->
-<!--        </template>-->
-<!--        </el-table-column>-->
+        <!-- <el-table-column
+                     label="查询数据"
+                      width="400">
+      <template slot-scope="scope">
+         <span style="margin-left: 10px">
+           <json-viewer
+        :value="scope.row.QueryData"
+          :expand-depth=5
+            copyable
+            boxed></json-viewer>
+          </span>
+       </template>
+       </el-table-column>  -->
 
         <el-table-column label="展示页面"
                          width="250" >
@@ -65,7 +65,7 @@
 
 <script>
  import JsonViewer from 'vue-json-viewer'
-  import router from '../../router'
+import router from '../../router'
   // eslint-disable-next-line no-unused-vars
   import store from '../../store'
   export default {
@@ -115,10 +115,14 @@
             }
             this.finishedList = []
             for (var i in content) {
+              
+              // console.log(content[i].params)
               if (content[i] != null) {
                 var temp = {}
                 temp['id'] = content[i].id
                 var inputDataJson = JSON.parse(content[i].params)
+                console.log(i)
+                console.log(inputDataJson)
                 switch (content[i].type) {
                   case 'community':
                     var basictocn = ['行业用户及交易情况统计','行业结构可视化']
@@ -136,14 +140,14 @@
                     }
                     if (inputDataJson.basic_info !== '') {
                       temp1['基础维度'] = []
-                      for (var i in inputDataJson.basic_info){
-                        temp1['基础维度'].push(basictocn[(inputDataJson.basic_info[i]-'0')-1]) 
+                      for (var j in inputDataJson.basic_info){
+                        temp1['基础维度'].push(basictocn[(inputDataJson.basic_info[j]-'0')-1]) 
                       }
                     }
                     if (inputDataJson.industry_active_info !== '') {
                       temp1['活跃维度'] = []
-                      for (var i in inputDataJson.industry_active_info){
-                        temp1['活跃维度'].push(activetocn[(inputDataJson.industry_active_info[i]-'0')-1]) 
+                      for (var j in inputDataJson.industry_active_info){
+                        temp1['活跃维度'].push(activetocn[(inputDataJson.industry_active_info[j]-'0')-1]) 
                       }
                     }
                     if (inputDataJson.address !== '') {
@@ -170,8 +174,8 @@
                     }
                     if (inputDataJson.basic_info != '') {
                       temp1['基础维度'] = []
-                      for (var i in inputDataJson.basic_info){
-                        temp1['基础维度'].push(basictocn[(inputDataJson.basic_info[i]-'0')-1]) 
+                      for (var j in inputDataJson.basic_info){
+                        temp1['基础维度'].push(basictocn[(inputDataJson.basic_info[j]-'0')-1]) 
                       }
                     }
                     if (inputDataJson.hash!= '') {
@@ -179,8 +183,8 @@
                     }
                     if (inputDataJson.money_transfer != '') {
                       temp1['资金转移'] = []
-                      for(var i in inputDataJson.money_transfer){
-                        temp1['资金转移'].push(trantocn[inputDataJson.money_transfer[i]-1])
+                      for(var j in inputDataJson.money_transfer){
+                        temp1['资金转移'].push(trantocn[inputDataJson.money_transfer[j]-1])
                       }
                     }
                     if (inputDataJson.victim_migration != '') {
@@ -201,7 +205,7 @@
                       temp1['查询深度'] =  inputDataJson.depth
                     }
                     if (inputDataJson.method !== '') {
-                      temp1['追踪方法'] = methodtocn[(inputDataJson.method-'0')]
+                      temp1['追踪方法'] = methodtocn[(inputDataJson.method-'0')-1]
                     }
                     if (inputDataJson.tx_hash !== '') {
                       temp1['查询的哈希'] =  inputDataJson.tx_hash
@@ -229,6 +233,8 @@
                     temp['InputData'] = temp1
                     break
                 }
+                console.log(i)
+                console.log(content[i].params)
                 temp['QueryData'] = content[i].params
                 this.finishedList.push(temp)
               }
@@ -238,13 +244,12 @@
       enter (data) {
         console.log(data)
         var content = data
-        console.log('用户')
+        console.log('enter')
         console.log(content)
         this.$axios.post('http://10.176.34.161:8000/api/getTaskResult', {
           user_id: this.$store.state.id,
           task_id: content.id
         }).then(res => {
-          console.log('后端获取结果')
           console.log(res.data)
           switch (content.QueryItem) {
             case '行业分析':

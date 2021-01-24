@@ -42,14 +42,14 @@
             <tr>
              <td>区块高度</td>
              <td>{{info.blocknumber}}</td>
-           </tr>
+           </tr> 
              <tr>
              <td>交易发送地址</td>
-             <td><router-link :to="{ name: 'ethAddressQuery', params: { msgKey: info.from }}" style="color:#409eff">{{info.from}}</router-link></td>
+             <td><router-link :to="{ name: 'ethAddressQuery', params: { msgKey: info.from }}" style="color:#409eff">{{info.from}}</router-link>  <el-tag v-if="info.from_label!=''" size="small" style="text-indent: 0px">{{info.from_label}}</el-tag></td>
            </tr>
             <tr>
              <td>交易接收地址</td>
-             <td><router-link :to="{ name: 'ethAddressQuery', params: { msgKey: info.to }}" style="color:#409eff">{{info.to}}</router-link></td>
+             <td><router-link :to="{ name: 'ethAddressQuery', params: { msgKey: info.to }}" style="color:#409eff">{{info.to}}</router-link> <el-tag v-if="info.to_label!=''" size="small" style="text-indent: 0px">{{info.to_label}}</el-tag></td>
            </tr> 
             <tr>
              <td>交易金额</td>
