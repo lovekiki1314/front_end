@@ -12,7 +12,7 @@
                          width="200">
         </el-table-column>
         <el-table-column label="已输入数据"
-                         width="700">
+                         width="800">
           <template slot-scope="scope">
           <span style="margin-left: 10px">
             <json-viewer
@@ -39,14 +39,14 @@
        </el-table-column>  -->
 
         <el-table-column label="展示页面"
-                         width="200" >
+                         width="250" >
           <template slot-scope="scope">
             <el-button @click="enter(scope.row)"
                        type="primary"  style="margin-left:20%">跳转</el-button>
           </template>
         </el-table-column>
         <el-table-column label="操作"
-        width="200"
+        width="250"
                          >
           <template slot-scope="scope" >
             <el-button @click="deletetask(scope.row)"

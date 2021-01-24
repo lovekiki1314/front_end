@@ -37,7 +37,7 @@
           <p>行业基础特征展示维度</p>
           <el-form-item title="行业基础特征展示维度">
             <el-checkbox-group v-model="form.basic_info">
-              <el-checkbox label="1">行业用户及交易情况统计</el-checkbox>
+              <el-checkbox label="1">行业交易情况统计</el-checkbox>
               <el-checkbox label="2">行业结构可视化</el-checkbox>
             </el-checkbox-group>
           </el-form-item>

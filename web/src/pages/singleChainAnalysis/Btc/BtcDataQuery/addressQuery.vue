@@ -136,7 +136,7 @@
               <el-table-column
                         prop="transactionhash"
                         label="交易哈希"
-                        width = "650">
+                        width = "750">
                 <template slot-scope="scope">
                             <router-link :to="{ name: 'btcTransactionQuery', params: { msgKey: scope.row.transactionhash}}"
                             >{{scope.row.transactionhash}}</router-link>

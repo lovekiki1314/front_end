@@ -26,7 +26,7 @@ export default {
                 temp['genre'] = '暗网'
                 break
               case 'e':
-                temp['genre'] = '交易'
+                temp['genre'] = '交易所'
                 break
               case 'g':
                 temp['genre'] = '赌博'

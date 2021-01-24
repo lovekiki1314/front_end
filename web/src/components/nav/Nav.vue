@@ -172,6 +172,7 @@ export default {
   margin-top:1.5%;
   margin-right: 20px;
   float: right;
+  font-size: 15px;
 }
 #price{
   width: 100%;

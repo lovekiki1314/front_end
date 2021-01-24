@@ -14,13 +14,8 @@
                  <h2 class="title" @click="test">比特币</h2>               
                </el-card>
             </el-col>
-            <el-col :span="8">
-               <el-card shadow="hover" class="multicard" @click="test1">
-                 <img src="../../assets/icon/eos.svg" class="imgAll" @click="test1">
-                 <br><br>
-                 <h2 class="title"  @click="test1">柚子币</h2>                
-               </el-card>
-            </el-col>
+
+
             <el-col :span="8">
                <el-card shadow="hover" class="multicard" @click="test2">
                   <img src="../../assets/icon/eth.svg" class="imgAll" @click="test2">
@@ -28,6 +23,14 @@
                   <h2 class="title" @click="test2">以太坊</h2>               
                </el-card>
             </el-col>
+            <el-col :span="8">
+               <el-card shadow="hover" class="multicard" @click="test1">
+                 <img src="../../assets/icon/eos.svg" class="imgAll" @click="test1">
+                 <br><br>
+                 <h2 class="title"  @click="test1">柚子币</h2>                
+               </el-card>
+            </el-col>
+            
          </el-row>
         <div class="div1" @click="showthen">
           <el-card shadow="hover" class="multicard" >
@@ -76,13 +79,13 @@ export default {
        test1(){
          if(this.card2){
            var a = document.getElementsByClassName('multicard');
-           a[1].style.borderColor = '#50a6fc';
+           a[2].style.borderColor = '#50a6fc';
            
            this.card2=false
            console.log(this.card2)
          }else{
            var a = document.getElementsByClassName('multicard');
-           a[1].style.borderColor = 'white';
+           a[2].style.borderColor = 'white';
            this.card2 =true
            console.log(this.card2)
          }
@@ -90,13 +93,13 @@ export default {
        test2(){
          if(this.card3){
            var a = document.getElementsByClassName('multicard');
-           a[2].style.borderColor = '#50a6fc';
-           a[2].style.borderSize = 1000
+           a[1].style.borderColor = '#50a6fc';
+           a[1].style.borderSize = 1000
            this.card3=false
            console.log(this.card3)
          }else{
            var a = document.getElementsByClassName('multicard');
-           a[2].style.borderColor = 'white';
+           a[1].style.borderColor = 'white';
            this.card3 =true
            console.log(this.card3)
          }
