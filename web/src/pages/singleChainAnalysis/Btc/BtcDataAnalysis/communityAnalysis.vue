@@ -134,6 +134,7 @@ export default {
       }
       console.log('测试')
       console.log(form.startTime)
+      alert('任务请求已提交！')
       this.$axios.post('http://10.176.34.161:8000/api/analysis/btc/community/add',form).then(res => {
         this.data = res.data
       })

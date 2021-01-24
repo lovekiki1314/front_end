@@ -22,18 +22,21 @@
          <el-button v-show="show2" type="primary" :loading='true' >努力加载中</el-button>
       </el-form>
       <div v-show="show" class="transaction-main-body">
+        <h3 style="text-align: center;">比特币交易详细信息</h3>  
          <table class="table">
           <tbody>
             <tr>
+              <th colspan="2"> <el-button  type="primary" @click="showInfo">展开详细信息</el-button> 
+              <el-button type="danger" @click="onReset">继续查询</el-button></th>   
+                       
+            </tr>
+            <tr>
               <th colspan="3">交易哈希： {{info.txhash}}</th>
             </tr>
-            <tr>
-              <th colspan="2">比特币交易详细信息 <el-button  type="primary" @click="showInfo">展开详细信息</el-button> 
-              <el-button type="danger" @click="onReset">继续查询</el-button></th>              
-            </tr>
+            
 
             <tr>
-              <td colspan="2">
+              <td colspan="3">
                 <p v-for="index in vin.length"
                    :key="index">{{[index-1]}}<router-link :to="{ name: 'btcAddressQuery', params: { msgKey: vin[index-1].address}}"><span style="color: #50a6fc">{{vin[index-1].address}}</span></router-link>
                    <el-tag v-if="vin[index-1].label!=''" size="small">{{vin[index-1].label}}</el-tag>{{vin[index-1].value}} BTC
@@ -41,7 +44,7 @@
 
               </td>
               <td><img align="center" src="../../../../assets/arrow_right.png"></td>
-              <td colspan="2">
+              <td colspan="3">
                  <p v-for="index in vout.length"
                    :key="index">{{[index-1]}}<router-link :to="{ name: 'btcAddressQuery', params: { msgKey: vout[index-1].address}}"><span style="color: #50a6fc">{{vout[index-1].address}}</span></router-link>
                    <el-tag v-if="vout[index-1].label!=''" size="small">{{vout[index-1].label}}</el-tag> {{vout[index-1].value}}  BTC
@@ -79,7 +82,7 @@
             </tr>
           </tbody>
        </table>
-        <table v-show="show1">
+        <table v-show="show1" style="padding-bottom:5%">
           <tbody>
             <tr>
               <th>输入脚本</th>
@@ -261,10 +264,10 @@ td {
 }
 
 .transaction-main-body {
-  position: relative;
+  
   top: 70px; /* 距离窗口顶部距离 */
   /*vertical-align: middle;*/
-  width: 80%;
-  margin: 0 10%;
+  width: 100%;
+  margin: 0 3%;
 }
 </style>

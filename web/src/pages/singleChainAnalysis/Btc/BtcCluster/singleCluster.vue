@@ -143,7 +143,6 @@ export default {
   },
   mounted () {
     this.paint()
-    this.test()
     if(this.$store.state.isLogin == false) {
         console.log('未登录')
         router.push('/')
@@ -152,8 +151,8 @@ export default {
   
   methods: {
     paint () {
-      const width = 800
-      const height = 500
+      const width = 1500
+      const height = 600
       const colors = [
         '#BDD2FD',
         '#BDEFDB',
@@ -282,7 +281,7 @@ export default {
       // 监听节点上的click事件
       graph.on('node:click', handleNodeClick);
       // 从项目的public文件夹拿json数据
-      this.$axios.get('/new.json')
+      this.$axios.get('/static/new.json')
         .then(res => {
           var temp = res.data
           var array = temp.dict
@@ -332,7 +331,7 @@ export default {
         .post('http://10.176.34.161:8000/api/analysis/btc/cluster/add', form).then(res => {
           console.log(res.data)
         })
-      alert('任务请求已提交，完成状态')
+      alert('任务请求已提交！')
     }
   }
 }

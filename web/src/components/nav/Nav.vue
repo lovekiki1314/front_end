@@ -8,14 +8,18 @@
             <router-link class="menu-item" to='/home'>首页</router-link>
             <a class="menu-item disabled" v-if="!IsLogin"  @click="check()">链内分析</a>
             <router-link class="menu-item" v-else to="/singleChainAnalysis">链内分析</router-link>
-            <a class="menu-item disabled" v-if="!IsLogin" @click="check()">暗网数据</a>
-            <router-link class="menu-item" v-else to="/darknet">暗网数据</router-link>
+            <a class="menu-item disabled" v-if="!IsLogin"  @click="check()">跨链分析</a>
+            <router-link class="menu-item" v-else to="/multiChainAnalysis">跨链分析</router-link>
+
             <a class="menu-item disabled" v-if="!IsLogin" @click="check()">数据源管理</a>
             <router-link class="menu-item" v-else to="/dataManagement">数据源管理</router-link>
-            <router-link class="menu-item" to="/about">论文推荐</router-link>
-            <router-link class="menu-item" to="/aboutus">关于我们</router-link>
+            <a class="menu-item disabled" v-if="!IsLogin" @click="check()">暗网数据</a>
+            <router-link class="menu-item" v-else to="/darknet">暗网数据</router-link>
             <router-link class="menu-item-button" v-if="!IsLogin" to="/login">登录</router-link>
             <router-link class="menu-item" v-else to="/userCenter">个人信息</router-link>
+            <!-- <router-link class="menu-item" to="/about">论文推荐</router-link> -->
+            <router-link class="menu-item" to="/aboutus">关于我们</router-link>
+            
             
         </ul>
       <div id="price">

@@ -94,8 +94,8 @@ export default {
       console.log(this.currentPage) //点击第几页
     },
     paint () {
-      const width = 800
-      const height = 500
+      const width = 1050
+      const height = 600
       const colors = [
         '#BDD2FD',
         '#BDEFDB',
@@ -224,7 +224,7 @@ export default {
       // 监听节点上的click事件
       graph.on('node:click', handleNodeClick);
       // 从项目的public文件夹拿json数据
-      this.$axios.post('http://10.176.34.161:8001/api/getTaskResult', {
+      this.$axios.post('http://10.176.34.161:8000/api/getTaskResult', {
         user_id: this.$store.state.id,
         task_id: this.$cookies.get('task_id'),
       }).then(res => {

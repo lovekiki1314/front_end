@@ -18,7 +18,8 @@
             <json-viewer
               :value="scope.row.InputData"
               :expand-depth=1
-              copyable
+              :copyable="{copyText:'复制',
+              copiedText:'已复制'}"
              ></json-viewer>
           </span>
           </template>

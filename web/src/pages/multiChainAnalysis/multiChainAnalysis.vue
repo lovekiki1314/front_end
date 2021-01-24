@@ -29,8 +29,8 @@
                </el-card>
             </el-col>
          </el-row>
-        <div class="div1">
-          <el-card shadow="hover" class="multicard">
+        <div class="div1" @click="showthen">
+          <el-card shadow="hover" class="multicard" >
                   <img src="../../assets/icon/区块链.svg" class="imgAll">
                   <br><br>
                   <h2 class="title">开始按钮</h2>
@@ -56,6 +56,10 @@ export default {
         Nav,Footer
     },
     methods:{
+      showthen(){
+        alert('该部分仍在开发中，敬请期待')
+
+      },
       test(){
          if(this.card1){
            var a = document.getElementsByClassName('multicard');
