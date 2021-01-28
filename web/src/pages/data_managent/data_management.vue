@@ -15,7 +15,7 @@
       </div>
       <el-form ref="form" :model="downloadForm" label-width="150px">
         <el-row type="flex" class="row-bg" justify="center">
-          <el-col :span="6"
+          <el-col :span="6" style="margin-left:2%;"
             ><div class="grid-content bg-purple">
               <el-form-item label="公链名称：">
                 <el-select
@@ -61,7 +61,7 @@
                   placeholder="请选择日期"
                   format="yyyy年 MM月 dd日"
                   value-format="yyyy-MM-dd"
-                  :picker-options="pickerOptions"
+                  :picker-options="startDatePicker"
                 >
                 </el-date-picker>
               </el-form-item></div
@@ -77,7 +77,7 @@
                   placeholder="请选择日期"
                   value-format="yyyy-MM-dd"
                   format="yyyy年 MM月 dd日"
-                  :picker-options="pickerOptions"
+                  :picker-options="endDatePicker"
                 >
                 </el-date-picker>
               </el-form-item>
@@ -98,6 +98,10 @@
       <hr style="background-color: #50a6fc; height: 2px; border: none" />
       <br /><br /><br />
 
+
+      <div class="section-header4">
+        <h2 class="section-title">数据上传</h2>
+      </div>
       <el-form ref="form" :model="uploadForm" label-width="150px">
         <el-row type="flex" class="row-bg" justify="center">
           <el-col :span="6"
@@ -118,9 +122,9 @@
               </el-form-item></div
           ></el-col>
 
-          <el-col :span="6"
+          <el-col :span="6" 
             ><div class="grid-content bg-purple">
-              <el-form-item label="钱包地址:">
+              <el-form-item label="待上传钱包地址:">
                 <el-input
                   size="medium"
                   type="textarea"
@@ -133,12 +137,11 @@
               </el-form-item></div
           ></el-col>
 
-
           <el-col :span="5"
             ><div class="grid-content bg-purple">
               <el-form-item label="标签类型：">
                 <el-select
-                  v-model="uploadForm.type"
+                  v-model="uploadForm.label"
                   placeholder="请选择地址标签种类"
                 >
                   <el-option
@@ -154,13 +157,13 @@
 
           <el-col :span="6"
             ><div class="grid-content bg-purple">
-              <el-form-item label="上传信息:" style="margin-right:5%;">
+              <el-form-item label="上传信息:" style="margin-right: 5%">
                 <el-input
                   type="textarea"
                   :autosize="{ minRows: 3 }"
                   placeholder="请输入内容"
                   v-model="uploadForm.info"
-                  style="margin-right:5px;"
+                  style="margin-right: 5px"
                 >
                 </el-input>
               </el-form-item></div
@@ -187,6 +190,9 @@ export default {
   components: { Nav, Footer },
   data() {
     return {
+      range: [],
+      startDatePicker: this.beginDate(),
+      endDatePicker: this.processDate(),
       chainName: [
         {
           value: 1,
@@ -255,6 +261,7 @@ export default {
         type: "",
         info: "",
         address: "",
+        label: "",
         user_id: this.$store.state.id,
       },
 
@@ -291,40 +298,70 @@ export default {
   },
 
   methods: {
+    beginDate() {
+      const self = this;
+      return {
+        disabledDate(time) {
+          let endTime = self.range[1];
+          if (endTime) {
+            // 如果结束时间不为空，则小于结束时间
+            endTime = endTime.replace(/-/g, "/"); // 正则匹配转换，例如‘2020-01-01’ 转成 ‘2020/01/01’
+            return time.getTime() > new Date(endTime).getTime();
+          }
+        },
+      };
+    },
+    processDate() {
+      const self = this;
+      return {
+        disabledDate(time) {
+          let startTime = self.range[0];
+          if (startTime) {
+            // 如果开始时间不为空，则结束时间大于开始开始时间
+            startTime = startTime.replace(/-/g, "/"); // 正则匹配转换，例如‘2020-01-01’ 转成 ‘2020/01/01’
+            return time.getTime() < new Date(startTime).getTime();
+          }
+        },
+      };
+    },
     download() {
-      var cointocn = ['BTC','ETH','EOS']
-      var typetocn = ['block','tx']
+      var cointocn = ["BTC", "ETH", "EOS"];
+      var typetocn = ["block", "tx"];
       console.log(this.downloadForm);
       const fileName =
-        cointocn[this.downloadForm.currency-1] +
+        cointocn[this.downloadForm.currency - 1] +
         "_" +
-        typetocn[this.downloadForm.data_type-1] +
+        typetocn[this.downloadForm.data_type - 1] +
         "_" +
         this.downloadForm.start_date +
         "_" +
         this.downloadForm.end_date +
         ".csv";
-      this.$axios
-        .post(
-          "http://10.176.34.161:8000/api/userManagement/download",
-          this.downloadForm
-        )
-        .then((res) => {
-          const contentDisposition = res.headers["content-disposition"];
+      if (this.downloadForm.start_date > this.downloadForm.end_date) {
+        alert("输入日期非法");
+      } else {
+        this.$axios
+          .post(
+            "http://10.176.34.161:8000/api/userManagement/download",
+            this.downloadForm
+          )
+          .then((res) => {
+            const contentDisposition = res.headers["content-disposition"];
 
-          // 以上两行代码获取服务端返回的文件名，当然也可以前端在此定义指定文件名 如：const fileName = test.xls
-          let blob = new Blob([res.data], {
-            type: "text/csv", // 将会被放入到 blob 中的数组内容的 MIME 类型,常用 ：application/vnd.ms-excel
+            // 以上两行代码获取服务端返回的文件名，当然也可以前端在此定义指定文件名 如：const fileName = test.xls
+            let blob = new Blob([res.data], {
+              type: "text/csv", // 将会被放入到 blob 中的数组内容的 MIME 类型,常用 ：application/vnd.ms-excel
+            });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            URL.revokeObjectURL(link.href);
+            document.body.removeChild(link);
           });
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = fileName;
-          link.style.display = "none";
-          document.body.appendChild(link);
-          link.click();
-          URL.revokeObjectURL(link.href);
-          document.body.removeChild(link);
-        });
+      }
     },
     upload() {
       const addressReg = /^[a-zA-Z0-9_-]{26,34}$/;
@@ -357,6 +394,18 @@ export default {
               });
             }
           });
+      }
+    },
+  },
+  watch: {
+    range(val) {
+      let endTime = val[1];
+      if (endTime) {
+        endTime = endTime.replace(/-/g, "/");
+        val1[1] = new Date(
+          new Date(endTime).getTime() + (3600 * 1000 * 24 - 1)
+        );
+        // 手动将日期设置endTime为当天的23:59:59
       }
     },
   },

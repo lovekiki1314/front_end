@@ -72,12 +72,15 @@ export default {
           result_amount[data[i].genre][data[i].type] = data[i].amount
         }
       }
+      console.log('12343')
+      console.log(result_num)
 
       var result = []
       for (var i in result_num) {
         for (var j in result_num[i]) {
           var temp = {}
           temp['genre'] = i
+          
           switch(j) {
             case 'e':
               temp['type'] = '交易所'
@@ -91,9 +94,16 @@ export default {
             case 's':
               temp['type'] = '服务商'
               break
+            case 'm':
+              temp['type'] = '矿工'
+              break
+            case 't':
+              temp['type'] = '其他'
+              break
           }
           temp['num'] = result_num[i][j]
           temp['amount'] = result_amount[i][j]
+          console.log(temp['genre'])
           result.push(temp)
         }
       }

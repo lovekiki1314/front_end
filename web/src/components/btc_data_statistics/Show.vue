@@ -653,6 +653,8 @@ export default {
       //请求和处理的方法与普通折线图基本一致
       var full_url = this.HOST + '/statistics/everyday/stats/btc/miner_fee'
       var jsonpara = this.form
+      console.log(full_url)
+      console.log(jsonpara)
       this.$axios
         .post(full_url, jsonpara)
         .then(function (res) {
@@ -666,22 +668,25 @@ export default {
             )
           }
           var tmpName = [
-            '总矿工费',
-            '最小矿工费',
-            '最大矿工费',
-            '平均矿工费',
-            '矿工费中位数',
-            '矿工费方差'
+            '总矿工费'
+            // '最小矿工费',
+            // '最大矿工费',
+            // '平均矿工费',
+            // '矿工费中位数',
+            // '矿工费方差'
           ]
+          
           for (let k in arr[0]) {
             //取date字段外的项
             if (k !== xAxis_key) {
               svg_obj_key.push(tmpName[0])
               svg_obj_key_origin.push(k)
-              tmpName.shift()
               console.log(tmpName)
+              tmpName.shift()
+              
             }
           }
+          
           let l = svg_obj_key.length
           console.log(xAxis_key)
           for (let o of arr) {
@@ -725,8 +730,8 @@ export default {
       if (this.miner_search_flag == '1') {
         this.show_flag = 'm'
         if (this.click_flag == '0') {
-          this.form.start_date = this.customFormatter(new Date(2019, 10, 5))
-          this.form.end_date = this.customFormatter(new Date(2021, 0, 17))
+          this.form.start_date = this.customFormatter(new Date(2021, 0, 17))
+          this.form.end_date = this.customFormatter(new Date(2021, 0, 24))
           this.whether_show_org = true
           this.whether_show_click = false
           this.whether_show_pie = false
@@ -745,8 +750,8 @@ export default {
       if (this.miner_search_flag == '0') {
         this.show_flag = 'o'
         if (this.click_flag == '0') {
-            this.form.start_date = this.customFormatter(new Date(2019, 10, 5))
-            this.form.end_date = this.customFormatter(new Date(2021, 0, 17))
+            this.form.start_date = this.customFormatter(new Date(2020, 8, 24))
+            this.form.end_date = this.customFormatter(new Date(2021, 0, 24))
 
             this.whether_show_org = true
             this.whether_show_click = false

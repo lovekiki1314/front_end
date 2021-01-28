@@ -70,7 +70,28 @@ export default {
       for (var i in result_num) {
         for (var j in result_num[i]) {
           var temp = {}
+          console.log(i)
           temp['genre'] = i
+          switch(i) {
+            case 'e':
+              temp['genre'] = '交易所'
+              break
+            case 'g':
+              temp['genre'] = '赌博'
+              break
+            case 'd':
+              temp['genre'] = '暗网'
+              break
+            case 's':
+              temp['genre'] = '服务商'
+              break
+            case 'm':
+              temp['genre'] = '矿工'
+              break
+            case 't':
+              temp['genre'] = '其他'
+              break
+          }
           switch (j) {
             case 'incoming':
               temp['type'] = '转入'
@@ -84,6 +105,7 @@ export default {
           }
           temp['num'] = result_num[i][j]
           temp['amount'] = result_amount[i][j]
+
           result.push(temp)
         }
       }
@@ -98,6 +120,16 @@ export default {
       chart.data(this.dataG2)
       chart
         .interval()
+        .adjust([
+          {
+            type: "dodge",
+            dodgeBy: "type", // 按照 type 字段进行分组
+            marginRatio: 0, // 分组中各个柱子之间不留空隙
+          },
+          {
+            type: "stack",
+          },
+        ])
         .position('genre*num')
         .color('type')
       chart.render()

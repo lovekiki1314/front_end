@@ -90,6 +90,12 @@ export default {
             case 's':
               temp['type'] = '服务商'
               break
+            case 'm':
+              temp['type'] = '矿工'
+              break
+            case 't':
+              temp['type'] = '其他'
+              break
           }
           temp['num'] = result_num[i][j]
           temp['amount'] = result_amount[i][j]
@@ -106,6 +112,8 @@ export default {
         }
       }
       this.dataForMoneyDeposit = result
+      console.log('4123432')
+      console.log(result)
     }
   },
   watch: {

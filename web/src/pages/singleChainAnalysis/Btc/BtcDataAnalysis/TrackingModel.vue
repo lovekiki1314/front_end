@@ -54,14 +54,14 @@
           v-if="showHead">交易{{tx_hash}}追踪结果</h4>
       <div v-if="showHead">
         <b-tabs content-class="mt-3">
-          <b-tab title="交易层面"
+          <b-tab title="交易维度"
                  active
                  @click="changeDimension('transaction')"></b-tab>
-          <b-tab title="地址层面"
+          <b-tab title="地址维度"
                  @click="changeDimension('address')"></b-tab>
-          <b-tab title="用户层面"
+          <b-tab title="用户维度"
                  @click="changeDimension('user')"></b-tab>
-          <b-tab title="行业层面"
+          <b-tab title="行业维度"
                  @click="changeDimension('industry')"></b-tab>
         </b-tabs>
       </div>

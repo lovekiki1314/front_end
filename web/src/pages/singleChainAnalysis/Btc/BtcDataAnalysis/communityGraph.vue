@@ -5,11 +5,14 @@
     <div class="communityGraph">
       <Graph1_1 :data="data.industry_information"
                 v-show="show1_1" />
+                <br /><br />
       <!-- <Graph1_2 v-show="show1_2" /> -->
       <Graph2_1 :data="data.entity_value"
                 v-show="show2_1" />
+                <br /><br />
       <Graph2_2 :data="data.industry_value"
                 v-show="show2_2" />
+                <br /><br />
       <Graph2_3 :data="data.user_flow"
                 v-show="show2_3" />
     </div>

@@ -5,14 +5,19 @@
     <div class="illegalGraph">
       <Graph1_1 :data="data.time_window"
                 v-show="show1_1" />
+                <br /><br />
       <Graph1_2 :data="data.total"
                 v-show="show1_2" />
+                <br /><br />
       <Graph2_1 :data="data.money_flow"
                 v-show="show2_1" />
+                <br /><br />
       <Graph2_2 :data="data.money_flow"
                 v-show="show2_2" />
+                <br /><br />
       <Graph2_3 :data="data.money_flow"
                 v-show="show2_3" />
+                <br /><br />
       <Graph3_1 :data="data.user_flow"
                 v-show="show3_1" />
     </div>

@@ -172,6 +172,16 @@ export default {
       })
       chart
         .interval()
+        .adjust([
+          {
+            type: "dodge",
+            dodgeBy: "type", // 按照 type 字段进行分组
+            marginRatio: 0, // 分组中各个柱子之间不留空隙
+          },
+          {
+            type: "stack",
+          },
+        ])
         .position('genre*num')
         .color('type')
       chart.render()

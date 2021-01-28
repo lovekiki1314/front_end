@@ -123,8 +123,6 @@ import router from '../../router'
                 var temp = {}
                 temp['id'] = content[i].id
                 var inputDataJson = JSON.parse(content[i].params)
-                console.log(i)
-                console.log(inputDataJson)
                 switch (content[i].type) {
                   case 'community':
                     var basictocn = ['行业用户及交易情况统计','行业结构可视化']
@@ -235,8 +233,7 @@ import router from '../../router'
                     temp['InputData'] = temp1
                     break
                 }
-                console.log(i)
-                console.log(content[i].params)
+
                 temp['QueryData'] = content[i].params
                 this.finishedList.push(temp)
               }

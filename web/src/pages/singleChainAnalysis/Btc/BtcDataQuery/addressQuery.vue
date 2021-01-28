@@ -279,7 +279,7 @@ export default {
     initime(){
       console.log('initime')
       this.form.start_time = this.customFormatter(new Date(2009,0,10,0,0,0))
-      this.form.end_time = this.customFormatter(new Date(2020,0,25,2,9,54))
+      this.form.end_time = this.customFormatter(new Date(2021,0,24,2,9,54))
       console.log(this.form.start_time)
     },
     handleCurrentChange: function (currentPage) {

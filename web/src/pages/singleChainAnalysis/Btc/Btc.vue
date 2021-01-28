@@ -82,7 +82,7 @@
             class="section-img"
           >
             <el-card shadow="always" class="cardAll">
-              <p class="img-p">每日比特币交易数据</p>
+              <p class="img-p">比特币交易信息统计</p>
               <img
                 class="box-img1"
                 src="../../../assets/figures/每日交易.png"
@@ -96,7 +96,7 @@
             class="section-img"
           >
             <el-card shadow="always" class="cardAll">
-              <p class="img-p">每日区块查询</p>
+              <p class="img-p">比特币区块信息统计</p>
               <img
                 id="img5"
                 class="box-img1"
@@ -111,7 +111,7 @@
             class="section-img"
           >
             <el-card shadow="always" class="cardAll">
-              <p class="img-p">每日新增地址查询</p>
+              <p class="img-p">比特币新增地址信息统计</p>
               <img
                 id="img6"
                 class="box-img1"
@@ -138,7 +138,7 @@
         <el-col :span="8">
           <router-link to="/singleChainAnalysis/Btc/btc_HP" class="section-img">
             <el-card shadow="always" class="cardAll">
-              <p class="img-p">区块平均矿工费</p>
+              <p class="img-p">比特币区块矿工费信息统计</p>
               <img
                 id="img8"
                 class="box-img1"
