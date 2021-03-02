@@ -323,7 +323,7 @@ export default {
       console.log(this.form);
       this.$axios
         .get(
-          "http://10.176.34.161:8000/api/basicquery/address/eth/relatedtxs/" +
+          "http://10.176.34.167:8000/api/basicquery/address/eth/relatedtxs/" +
             this.form.address +
             "/"
         )
@@ -379,11 +379,11 @@ export default {
       this.$cookies.set("msgKey", "");
       console.log(this.form.address);
       var url =
-        "http://10.176.34.161:8000/api/basicquery/address/eth/" +
+        "http://10.176.34.167:8000/api/basicquery/address/eth/" +
         this.form.address +
         "/";
       var url2 =
-        "http://10.176.34.161:8000/api/basicquery/address/eth/relatedtxs/" +
+        "http://10.176.34.167:8000/api/basicquery/address/eth/relatedtxs/" +
         this.form.address +
         "/";
       // console.log(url)

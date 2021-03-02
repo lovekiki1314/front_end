@@ -224,7 +224,7 @@ export default {
       // 监听节点上的click事件
       graph.on('node:click', handleNodeClick);
       // 从项目的public文件夹拿json数据
-      this.$axios.post('http://10.176.34.161:8000/api/getTaskResult', {
+      this.$axios.post('http://10.176.34.167:8000/api/getTaskResult', {
         user_id: this.$store.state.id,
         task_id: this.$cookies.get('task_id'),
       }).then(res => {
@@ -275,7 +275,7 @@ export default {
         deep: this.form.deep
       }
       this.$axios
-        .post('http://10.176.34.161:8000/api/analysis/btc/cluster/add', form).then(res => {
+        .post('http://10.176.34.167:8000/api/analysis/btc/cluster/add', form).then(res => {
           console.log(res.data)
         })
     }

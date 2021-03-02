@@ -328,7 +328,7 @@ export default {
         deep: this.form.deep
       }
       this.$axios
-        .post('http://10.176.34.161:8000/api/analysis/btc/cluster/add', form).then(res => {
+        .post('http://10.176.34.167:8000/api/analysis/btc/cluster/add', form).then(res => {
           console.log(res.data)
         })
       alert('任务请求已提交！')

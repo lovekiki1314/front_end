@@ -215,7 +215,7 @@ export default {
       this.form.blockHash += this.$route.params.msgKey
       this.onSubmit()
     }
-    // var url = 'http://10.176.34.161:8001/api/basicquery/1/block'
+    // var url = 'http://10.176.34.167:8001/api/basicquery/1/block'
     // console.log(url)
     // this.$axios.get(url).then(res => {
     //   console.log(res.data)
@@ -255,10 +255,10 @@ export default {
       const numcheck = /^[1-9]\d*|0$/
       if(numcheck.test(this.form.blockHash)){
         this.value = '区块高度'
-        var url = 'http://10.176.34.161:8000/api/basicquery/block/eth/' + this.form.blockHash 
+        var url = 'http://10.176.34.167:8000/api/basicquery/block/eth/' + this.form.blockHash 
       }else{
         this.value = '区块哈希'
-        var url = 'http://10.176.34.161:8000/api/basicquery/blockhash/eth/' + this.form.blockHash 
+        var url = 'http://10.176.34.167:8000/api/basicquery/blockhash/eth/' + this.form.blockHash 
       }
       this.$axios.get(url).then(res => {
         if (res.data.result) {

@@ -158,7 +158,7 @@ export default {
     },
     sendGet (url_parmas) {
       console.log(url_parmas)
-      var url = 'http://10.176.34.161:8000/api/basicquery/transaction/btc/'+ url_parmas
+      var url = 'http://10.176.34.167:8000/api/basicquery/transaction/btc/'+ url_parmas
       this.loading = true
       this.errored = false
       console.log(url)

@@ -74,7 +74,7 @@ export default {
 
       this.$axios
         .post(
-          "http://10.176.34.161:8000/api/userManagement/user/unfinishedWork",
+          "http://10.176.34.167:8000/api/userManagement/user/unfinishedWork",
           {
             id: this.$store.state.id,
           }

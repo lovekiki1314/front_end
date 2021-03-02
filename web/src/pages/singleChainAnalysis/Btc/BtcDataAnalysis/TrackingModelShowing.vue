@@ -415,7 +415,7 @@ export default {
       this.showHead = false;
       graph.clear();
       // chart.clear();
-      let url = 'http://10.176.34.161:8000/api/analysis/btc/money_tracking';
+      let url = 'http://10.176.34.167:8000/api/analysis/btc/money_tracking';
       let params = {};
       params["tx_hash"] = this.tx_hash;
       params["method"] = this.choosed_method;
@@ -575,7 +575,7 @@ export default {
       industry_chart.hide();
     },
     addTask: function () {
-      let url = 'http://10.176.34.161:8000/api/analysis/btc/tracking/add';
+      let url = 'http://10.176.34.167:8000/api/analysis/btc/tracking/add';
       let params = {};
       params["user_id"] = 12;
       params["tx_hash"] = this.tx_hash;
@@ -606,7 +606,7 @@ export default {
       this.depth = tracking_form["depth"];
       console.log(this.depth)
       let _this = this;
-      let url = 'http://10.176.34.161:8000/api/getTaskResult';
+      let url = 'http://10.176.34.167:8000/api/getTaskResult';
       let params = {}
       params["user_id"] = this.$store.state.id
       params["task_id"] = task_id

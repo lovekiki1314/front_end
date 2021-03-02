@@ -97,7 +97,7 @@ export default {
       }
       else {
         this.$axios
-          .post('http://10.176.34.161:8000/api/userManagement/user/login', {
+          .post('http://10.176.34.167:8000/api/userManagement/user/login', {
             userName: this.loginForm.userName,
             password: this.loginForm.password
           })

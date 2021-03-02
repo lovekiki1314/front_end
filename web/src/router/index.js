@@ -48,6 +48,7 @@ import singleClusterGraph from '../pages/singleChainAnalysis/Btc/BtcCluster/sing
 import about from '../pages/About/about'
 import aboutus from '../pages/About/aboutus'
 import darknet from '../pages/darknet/data_pre'
+import maliciousAddress from '../pages/maliciousAddress/maliciousAddress'
 Vue.use(Router)
 
 export default new Router({
@@ -92,6 +93,14 @@ export default new Router({
     component: darknet,
     meta:{
      title:'暗网数据',
+   }
+  },
+  {
+    path: '/maliciousAddress',
+    name: 'maliciousAddress',
+    component: maliciousAddress,
+    meta:{
+     title:'恶意地址',
    }
   },
    {

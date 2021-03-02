@@ -80,7 +80,7 @@ export default {
   methods: {
     showGraph (task_id) {
       console.log(task_id)
-      this.$axios.post('http://10.176.34.161:8000/api/getTaskResult', {
+      this.$axios.post('http://10.176.34.167:8000/api/getTaskResult', {
         user_id: this.$store.state.id,
         task_id: task_id,
       }).then(res => {

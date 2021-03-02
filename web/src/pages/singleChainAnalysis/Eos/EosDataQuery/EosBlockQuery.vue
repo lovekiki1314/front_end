@@ -207,7 +207,7 @@ export default {
       this.form.blockHash += this.$route.params.msgKey
       this.onSubmit()
     }
-    // var url = 'http://10.176.34.161:8001/api/basicquery/1/block'
+    // var url = 'http://10.176.34.167:8001/api/basicquery/1/block'
     // console.log(url)
     // this.$axios.get(url).then(res => {
     //   console.log(res.data)
@@ -245,10 +245,10 @@ export default {
     console.log(this.form.blockHash)
       if(numcheck.test(this.form.blockHash) || this.form.blockHash == 0){
         this.value = '区块高度'
-        this.url = 'http://10.176.34.161:8000/api/basicquery/block/eos/'+this.form.blockHash+'/'
+        this.url = 'http://10.176.34.167:8000/api/basicquery/block/eos/'+this.form.blockHash+'/'
       }else{
         this.value = '区块哈希'
-        this.url = 'http://10.176.34.161:8000/api/basicquery/blockhash/eos/'+this.form.blockHash+'/'
+        this.url = 'http://10.176.34.167:8000/api/basicquery/blockhash/eos/'+this.form.blockHash+'/'
       }
        this.$axios.get(this.url).then(res => {
         if (res.data.result) {

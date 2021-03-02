@@ -125,7 +125,7 @@ export default {
   methods: {
     showGraph (task_id) {
       this.resetShow = false
-      this.$axios.post('http://10.176.34.161:8000/api/getTaskResult', {
+      this.$axios.post('http://10.176.34.167:8000/api/getTaskResult', {
         user_id: this.$store.state.id,
         task_id: task_id,
       }).then(res => {
@@ -163,7 +163,7 @@ export default {
           this.show3_1 = true
         }
       }
-      this.$axios.post('http://10.176.34.161:8000/api/analysis/btc/illegal_activity').then(res => {
+      this.$axios.post('http://10.176.34.167:8000/api/analysis/btc/illegal_activity').then(res => {
         this.data = res.data
       })
     },
@@ -180,7 +180,7 @@ export default {
         address: this.form.address,
         hash: this.form.hash
       }
-      this.$axios.post('http://10.176.34.161:8000/api/analysis/btc/illegal/add', form).then(res => {
+      this.$axios.post('http://10.176.34.167:8000/api/analysis/btc/illegal/add', form).then(res => {
         this.data = res.data
       })
     },

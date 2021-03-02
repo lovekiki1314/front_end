@@ -10,6 +10,9 @@
             <router-link class="menu-item" v-else to="/singleChainAnalysis">链内分析</router-link>
             <a class="menu-item disabled" v-if="!IsLogin"  @click="check()">跨链分析</a>
             <router-link class="menu-item" v-else to="/multiChainAnalysis">跨链分析</router-link>
+            <!-- <a class="menu-item disabled" v-if="!IsLogin"  @click="check()">跨链分析</a> -->
+            <a class="menu-item disabled" v-if="!IsLogin"  @click="check()">恶意地址</a>
+            <router-link class="menu-item" v-else to="/maliciousAddress">恶意地址</router-link>
 
             <a class="menu-item disabled" v-if="!IsLogin" @click="check()">数据源管理</a>
             <router-link class="menu-item" v-else to="/dataManagement">数据源管理</router-link>

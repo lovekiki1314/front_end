@@ -124,7 +124,7 @@ export default {
       this.islable = false
       this.$cookies.set('msgKey', '')
       console.log(this.form.owner)
-      var url = 'http://10.176.34.161:8000/api/basicquery/address/eosaccount/'+this.form.owner 
+      var url = 'http://10.176.34.167:8000/api/basicquery/address/eosaccount/'+this.form.owner 
       console.log(url)
       this.$axios.get(url).then(res => {
         if (res.data.result) {

@@ -214,7 +214,7 @@ export default {
       this.show2 = true;
       this.transactionhash = document.getElementById('input').value
       console.log(this.transactionhash)
-      var url = 'http://10.176.34.161:8000/api/basicquery/transaction/eos/'+this.form.blockHash+'/'
+      var url = 'http://10.176.34.167:8000/api/basicquery/transaction/eos/'+this.form.blockHash+'/'
       console.log(url)
       this.$axios
         .get(url)
@@ -239,7 +239,7 @@ export default {
     },
     action() {
       this.show3 =true
-      var url_table = 'http://10.176.34.161:8000/api/basicquery/action/eos/'+ this.form.blockHash+'/'
+      var url_table = 'http://10.176.34.167:8000/api/basicquery/action/eos/'+ this.form.blockHash+'/'
       console.log(url_table)
       this.$axios.get(url_table).then( res =>{
         if (false) {

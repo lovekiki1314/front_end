@@ -90,7 +90,7 @@ export default {
         console.log('用户名合格')
         this.$axios
           .post(
-            'http://10.176.34.161:8000/api/userManagement/user/checkRegistered',
+            'http://10.176.34.167:8000/api/userManagement/user/checkRegistered',
             {
               userName: this.registeredForm.userName
             }
@@ -126,7 +126,7 @@ export default {
                 var str = JSON.stringify(temp)
                 console.log(str)
                 this.$axios.post(
-                  'http://10.176.34.161:8000/api/userManagement/user/insertUser',
+                  'http://10.176.34.167:8000/api/userManagement/user/insertUser',
                   {
                     user_info_form: str
                   }

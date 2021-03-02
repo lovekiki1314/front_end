@@ -74,8 +74,8 @@ export default {
         return {
             isSend : false,
             passwdrepeat : '',
-            forget_url : 'http://10.176.34.161:8000/api/userManagement/forgetpwd',
-            change_url : 'http://10.176.34.161:8000/api/userManagement/resetpwd',
+            forget_url : 'http://10.176.34.167:8000/api/userManagement/forgetpwd',
+            change_url : 'http://10.176.34.167:8000/api/userManagement/resetpwd',
             logining: false,
             changeForm: {
                 user_name: '',

@@ -323,7 +323,7 @@ export default {
           })
 
         var full_url = this.HOST + '/statistics/everyday/' + root_api + '/btc/' + url
-        // var full_url = 'http://10.176.34.161:8001/api/statistics/stats/transaction_curve'
+        // var full_url = 'http://10.176.34.167:8001/api/statistics/stats/transaction_curve'
         // if (url== 'new_address_curve'){
         //     this.form.start_date = this.customFormatter(new Date(2019, 0, 1))
         //     this.form.end_date = this.customFormatter(new Date(2019, 4, 1))

@@ -151,7 +151,7 @@ export default {
     sendGet (url_parmas) {
       this.show2 = true
       console.log(url_parmas)
-      var url = 'http://10.176.34.161:8000/api/basicquery/transaction/eth/'+ url_parmas
+      var url = 'http://10.176.34.167:8000/api/basicquery/transaction/eth/'+ url_parmas
       this.loading = true
       this.errored = false
       console.log(url)

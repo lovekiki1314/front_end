@@ -137,7 +137,7 @@ export default {
   methods: {
     onLoadMore() {
       this.loadingMore = true;
-      var url = "http://10.176.34.161:8000/api/darknet/marketdata";
+      var url = "http://10.176.34.167:8000/api/darknet/marketdata";
       this.cntt += 1;
       this.loadingMore = true;
       var form = {
@@ -159,7 +159,7 @@ export default {
       });
     },
     onSubmit() {
-      var url = "http://10.176.34.161:8000/api/darknet/marketdata";
+      var url = "http://10.176.34.167:8000/api/darknet/marketdata";
       this.loadshow = true;
       this.loading = true;
 

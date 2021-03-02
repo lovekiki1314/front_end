@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 5%;">
     <Nav></Nav>
-    <div class="container" v-bind:style="{ minHeight: Height + 'px' }">
+    <div class="container">
       <div class="section-header">
         <h2 class="section-title">链内数据分析</h2>
         <span>Analysis</span>
@@ -67,11 +67,7 @@ export default {
     Footer,
   },
   mounted() {
-    //动态设置内容高度 让footer始终居底   header+footer的高度是100
-    this.Height = document.documentElement.clientHeight - 70; //监听浏览器窗口变化
-    window.onresize = () => {
-      this.Height = document.documentElement.clientHeight - 70;
-    };
+
   },
 };
 </script>

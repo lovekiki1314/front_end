@@ -33,7 +33,7 @@ Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 Vue.prototype.$Chart = Chart
 Vue.prototype.$g6 = g6
-Vue.prototype.HOST = "http://10.176.34.161:8000/api"
+Vue.prototype.HOST = "http://10.176.34.167:8000/api"
 
 // 对axios的处理
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'

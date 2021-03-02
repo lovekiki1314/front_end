@@ -342,7 +342,7 @@ export default {
       } else {
         this.$axios
           .post(
-            "http://10.176.34.161:8000/api/userManagement/download",
+            "http://10.176.34.167:8000/api/userManagement/download",
             this.downloadForm
           )
           .then((res) => {
@@ -377,7 +377,7 @@ export default {
         console.log(this.uploadForm);
         this.$axios
           .post(
-            "http://10.176.34.161:8000/api/userManagement/upload",
+            "http://10.176.34.167:8000/api/userManagement/upload",
             this.uploadForm,
             { "Content-Type": "application/json;charset=UTF-8" }
           )

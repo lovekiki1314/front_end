@@ -254,7 +254,7 @@ export default {
       this.form.end_time = this.customFormatter(this.form.end_time)
       console.log('提交')
       console.log(this.form)
-      this.$axios.post('http://10.176.34.161:8000/api/statistics/everyday/stats/btc/address/transactions', this.form).then(res => {
+      this.$axios.post('http://10.176.34.167:8000/api/statistics/everyday/stats/btc/address/transactions', this.form).then(res => {
           var content = res.data.content
           var data = res.data
           console.log(data)
@@ -302,7 +302,7 @@ export default {
       this.islable = false
       this.$cookies.set('msgKey', '')
       console.log(this.form.address)
-      var url = 'http://10.176.34.161:8000/api/basicquery/address/btc/'+this.form.address +'/'
+      var url = 'http://10.176.34.167:8000/api/basicquery/address/btc/'+this.form.address +'/'
       console.log(url)
       this.$axios.get(url).then(res => {
         if (res.data.result) {

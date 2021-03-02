@@ -222,10 +222,10 @@ export default {
       const numcheck = /^[1-9]\d*|0$/
       if(numcheck.test(this.form.blockHash)){
         this.value = '区块高度'
-        this.url ='http://10.176.34.161:8000/api/basicquery/block/btc/'+this.form.blockHash+'/'
+        this.url ='http://10.176.34.167:8000/api/basicquery/block/btc/'+this.form.blockHash+'/'
       }else{
         this.value = '区块哈希'
-        this.url ='http://10.176.34.161:8000/api/basicquery/blockhash/btc/'+this.form.blockHash+'/'
+        this.url ='http://10.176.34.167:8000/api/basicquery/blockhash/btc/'+this.form.blockHash+'/'
       }
       this.$axios.get(this.url).then(res => {
         if (res.data.result) {

@@ -105,7 +105,7 @@ import router from '../../router'
       handleFinishedList () {
         this.loadingShow = true
         this.$axios
-          .post('http://10.176.34.161:8000/api/userManagement/user/finishedWork', {
+          .post('http://10.176.34.167:8000/api/userManagement/user/finishedWork', {
             id: this.$store.state.id
           })
           .then(res => {
@@ -245,7 +245,7 @@ import router from '../../router'
         var content = data
         console.log('enter')
         console.log(content)
-        this.$axios.post('http://10.176.34.161:8000/api/getTaskResult', {
+        this.$axios.post('http://10.176.34.167:8000/api/getTaskResult', {
           user_id: this.$store.state.id,
           task_id: content.id
         }).then(res => {
@@ -281,7 +281,7 @@ import router from '../../router'
         console.log('删除')
         console.log(content)
         console.log(this.$store.state.id)
-        this.$axios.post('http://10.176.34.161:8000/api/userManagement/user/delete_one_task', {
+        this.$axios.post('http://10.176.34.167:8000/api/userManagement/user/delete_one_task', {
           task_id: content.id,
           user_id: this.$store.state.id,
           finished: 1
